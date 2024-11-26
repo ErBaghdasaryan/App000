@@ -40,15 +40,15 @@ final class SettingsView: UIButton {
 
     private func setupConstraints() {
         image.snp.makeConstraints { view in
-            view.top.equalToSuperview().offset(16)
-            view.trailing.equalToSuperview().inset(16)
-            view.width.equalTo(30)
-            view.height.equalTo(30)
+            view.top.equalToSuperview().offset(18)
+            view.leading.equalToSuperview().inset(16)
+            view.width.equalTo(24)
+            view.height.equalTo(24)
         }
 
         title.snp.makeConstraints { view in
             view.top.equalToSuperview().offset(19)
-            view.leading.equalTo(image.snp.trailing).offset(6)
+            view.leading.equalTo(image.snp.trailing).offset(16)
             view.trailing.equalToSuperview().inset(16)
             view.height.equalTo(22)
         }

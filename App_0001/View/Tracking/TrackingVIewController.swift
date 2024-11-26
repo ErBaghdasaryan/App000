@@ -13,6 +13,10 @@ class TrackingVIewController: BaseViewController, UICollectionViewDelegate {
 
     var viewModel: ViewModel?
 
+    private let header = UILabel(text: "Users",
+                                 textColor: .white,
+                                 font: UIFont(name: "SFProText-Bold", size: 34))
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,6 +30,9 @@ class TrackingVIewController: BaseViewController, UICollectionViewDelegate {
             .foregroundColor: UIColor.white
         ]
 
+        self.header.textAlignment = .left
+
+        self.view.addSubview(header)
         setupConstraints()
     }
 
@@ -35,7 +42,12 @@ class TrackingVIewController: BaseViewController, UICollectionViewDelegate {
     }
 
     func setupConstraints() {
-        
+        header.snp.makeConstraints { view in
+            view.top.equalToSuperview().offset(101)
+            view.leading.equalToSuperview().offset(16)
+            view.trailing.equalToSuperview().inset(16)
+            view.height.equalTo(41)
+        }
     }
 }
 

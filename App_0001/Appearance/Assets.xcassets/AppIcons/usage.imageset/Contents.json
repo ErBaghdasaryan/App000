@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Edit Button-4.svg",
+      "filename" : "text.page.badge.magnifyingglass.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -19,6 +19,6 @@
     "version" : 1
   },
   "properties" : {
-    "template-rendering-intent" : "template"
+    "template-rendering-intent" : "original"
   }
 }

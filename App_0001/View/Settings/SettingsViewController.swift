@@ -22,6 +22,7 @@ class SettingsViewController: BaseViewController, UICollectionViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        makeButtonActions()
     }
 
     override func setupUI() {
@@ -71,6 +72,62 @@ class SettingsViewController: BaseViewController, UICollectionViewDelegate {
 
 extension SettingsViewController: IViewModelableController {
     typealias ViewModel = ISettingsViewModel
+}
+
+//MARK: Button Actions
+extension SettingsViewController {
+    private func makeButtonActions() {
+        self.usage.addTarget(self, action: #selector(usageTapped), for: .touchUpInside)
+        self.rate.addTarget(self, action: #selector(rateTapped), for: .touchUpInside)
+        self.share.addTarget(self, action: #selector(shareTapped), for: .touchUpInside)
+    }
+
+    @objc func shareTapped() {
+        let appStoreURL = URL(string: "https://apps.apple.com/us/app/dunk-dive/id6737307008")!
+
+        let activityViewController = UIActivityViewController(activityItems: [appStoreURL], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+
+        activityViewController.excludedActivityTypes = [
+            .postToWeibo,
+            .print,
+            .assignToContact,
+            .saveToCameraRoll,
+            .addToReadingList,
+            .postToFlickr,
+            .postToVimeo,
+            .postToTencentWeibo,
+            .openInIBooks,
+            .markupAsPDF
+        ]
+
+        present(activityViewController, animated: true, completion: nil)
+    }
+
+    @objc func rateTapped() {
+//        guard let scene = view.window?.windowScene else { return }
+//        if #available(iOS 14.0, *) {
+//            SKStoreReviewController.requestReview()
+//        } else {
+//            let alertController = UIAlertController(
+//                title: "Enjoying the app?",
+//                message: "Please consider leaving us a review in the App Store!",
+//                preferredStyle: .alert
+//            )
+//            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//            alertController.addAction(UIAlertAction(title: "Go to App Store", style: .default) { _ in
+//                if let appStoreURL = URL(string: "https://apps.apple.com/us/app/dunk-dive/id6737307008") {
+//                    UIApplication.shared.open(appStoreURL, options: [:], completionHandler: nil)
+//                }
+//            })
+//            present(alertController, animated: true, completion: nil)
+//        }
+    }
+
+    @objc func usageTapped() {
+        
+        
+    }
 }
 
 //MARK: Preview

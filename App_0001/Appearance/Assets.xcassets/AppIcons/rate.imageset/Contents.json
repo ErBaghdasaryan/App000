@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Edit Button-3.svg",
+      "filename" : "star-2.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -19,6 +19,6 @@
     "version" : 1
   },
   "properties" : {
-    "template-rendering-intent" : "template"
+    "template-rendering-intent" : "original"
   }
 }
