@@ -21,6 +21,7 @@ class OnboardingViewController: BaseViewController, UICollectionViewDelegate {
     private let descriptionLabel = UILabel(text: "Description",
                                            textColor: .white.withAlphaComponent(0.7),
                                            font: UIFont(name: "SFProText-Semibold", size: 17))
+    private let pageControl = AdvancedPageControlView()
     private let skipButton = UIButton(type: .system)
     private let nextButton = UIButton(type: .system)
     private var buttonsStack: UIStackView!
@@ -90,13 +91,32 @@ class OnboardingViewController: BaseViewController, UICollectionViewDelegate {
         mylayout.minimumInteritemSpacing = 0
 
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: mylayout)
-        setupConstraints()
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
 
         collectionView.register(OnboardingCell.self)
         collectionView.backgroundColor = .clear
         collectionView.isScrollEnabled = false
+
+        pageControl.drawer = ExtendedDotDrawer(numberOfPages: 4,
+                                               height: 6,
+                                               width: 63,
+                                               space: 6,
+                                               indicatorColor: UIColor.white,
+                                               dotsColor: UIColor.white.withAlphaComponent(0.4),
+                                               isBordered: true,
+                                               borderWidth: 0.0,
+                                               indicatorBorderColor: .orange,
+                                               indicatorBorderWidth: 0.0)
+        pageControl.setPage(0)
+
+        self.view.addSubview(collectionView)
+        self.view.addSubview(bottomView)
+        self.view.addSubview(header)
+        self.view.addSubview(descriptionLabel)
+        self.view.addSubview(buttonsStack)
+        self.view.addSubview(pageControl)
+        setupConstraints()
     }
 
     override func setupViewModel() {
@@ -123,12 +143,6 @@ class OnboardingViewController: BaseViewController, UICollectionViewDelegate {
     }
 
     func setupConstraints() {
-        self.view.addSubview(collectionView)
-        self.view.addSubview(bottomView)
-        self.view.addSubview(header)
-        self.view.addSubview(descriptionLabel)
-        self.view.addSubview(buttonsStack)
-
         bottomView.snp.makeConstraints { view in
             view.bottom.equalToSuperview()
             view.leading.equalToSuperview()
@@ -163,6 +177,13 @@ class OnboardingViewController: BaseViewController, UICollectionViewDelegate {
             view.trailing.equalToSuperview().inset(16)
             view.height.equalTo(54)
         }
+
+        pageControl.snp.makeConstraints { view in
+            view.top.equalToSuperview().offset(78)
+            view.leading.equalToSuperview().offset(60)
+            view.trailing.equalToSuperview().inset(60)
+            view.height.equalTo(6)
+        }
     }
 
 }
@@ -178,6 +199,7 @@ extension OnboardingViewController {
     private func resetLabelSizes(to page: Int) {
         switch page {
         case 1:
+            pageControl.setPage(1)
             header.snp.remakeConstraints { view in
                 view.top.equalTo(bottomView.snp.top).offset(43)
                 view.leading.equalToSuperview().offset(24)
@@ -195,6 +217,7 @@ extension OnboardingViewController {
             self.header.numberOfLines = 1
             self.descriptionLabel.numberOfLines = 2
         case 2:
+            pageControl.setPage(2)
             header.snp.remakeConstraints { view in
                 view.top.equalTo(bottomView.snp.top).offset(43)
                 view.leading.equalToSuperview().offset(24)
@@ -212,6 +235,7 @@ extension OnboardingViewController {
             self.header.numberOfLines = 1
             self.descriptionLabel.numberOfLines = 2
         case 3:
+            pageControl.setPage(3)
             collectionView.snp.remakeConstraints { view in
                 view.top.equalToSuperview().offset(164)
                 view.leading.equalToSuperview().offset(44)
@@ -235,30 +259,8 @@ extension OnboardingViewController {
 
             self.header.numberOfLines = 2
             self.descriptionLabel.numberOfLines = 1
-        case 4:
-            collectionView.snp.remakeConstraints { view in
-                view.top.equalToSuperview().offset(145)
-                view.leading.equalToSuperview().offset(44)
-                view.trailing.equalToSuperview().inset(44)
-                view.bottom.equalToSuperview().inset(65)
-            }
-
-            header.snp.remakeConstraints { view in
-                view.top.equalTo(bottomView.snp.top).offset(32)
-                view.leading.equalToSuperview().offset(16)
-                view.trailing.equalToSuperview().inset(16)
-                view.height.equalTo(34)
-            }
-
-            descriptionLabel.snp.remakeConstraints { view in
-                view.top.equalTo(header.snp.bottom).offset(12)
-                view.leading.equalToSuperview().offset(38)
-                view.trailing.equalToSuperview().inset(38)
-                view.height.equalTo(44)
-            }
-            self.header.numberOfLines = 1
-            self.descriptionLabel.numberOfLines = 2
         default:
+            pageControl.setPage(0)
             collectionView.snp.remakeConstraints { view in
                 view.top.equalToSuperview().offset(130)
                 view.leading.equalToSuperview().offset(44)
@@ -286,7 +288,7 @@ extension OnboardingViewController {
 
     @objc func skipButtonTapped() {
         guard let navigationController = self.navigationController else { return }
-        OnboardingRouter.showTabBarViewController(in: navigationController)
+        OnboardingRouter.showPaymentViewController(in: navigationController)
     }
 
     @objc func nextButtonTaped() {
@@ -301,7 +303,7 @@ extension OnboardingViewController {
             self.currentIndex = nextRow
             self.resetLabelSizes(to: currentIndex)
         } else {
-            OnboardingRouter.showTabBarViewController(in: navigationController)
+            OnboardingRouter.showPaymentViewController(in: navigationController)
         }
     }
 
@@ -334,10 +336,6 @@ extension OnboardingViewController: UICollectionViewDataSource, UICollectionView
         if indexPath.item == 3 {
             let width = self.view.frame.size.width - 80
             let heightt = self.view.frame.size.height - 403
-            return CGSize(width: width, height: heightt)
-        } else if indexPath.item == 4 {
-            let width = self.view.frame.size.width - 52
-            let heightt = self.view.frame.size.height - 210
             return CGSize(width: width, height: heightt)
         }
 

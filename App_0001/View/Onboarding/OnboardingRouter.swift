@@ -16,4 +16,11 @@ final class OnboardingRouter: BaseRouter {
         navigationController.navigationBar.isHidden = true
         navigationController.pushViewController(viewController, animated: true)
     }
+
+    static func showPaymentViewController(in navigationController: UINavigationController) {
+        let viewController = ViewControllerFactory.makePaymentViewController()
+        viewController.navigationItem.hidesBackButton = true
+        navigationController.navigationBar.isHidden = true
+        navigationController.pushViewController(viewController, animated: false)
+    }
 }

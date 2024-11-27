@@ -9,7 +9,7 @@ import UIKit
 import AppViewModel
 import SnapKit
 
-class TrackingVIewController: BaseViewController, UICollectionViewDelegate {
+class TrackingVIewController: BaseViewController {
 
     var viewModel: ViewModel?
 

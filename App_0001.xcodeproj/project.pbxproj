@@ -52,6 +52,13 @@
 		CC62C8D32CF61C090051063C /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8D22CF61C090051063C /* SettingsRouter.swift */; };
 		CC62C8D52CF61C100051063C /* SettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8D42CF61C100051063C /* SettingsAssembly.swift */; };
 		CC62C8D82CF623520051063C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8D72CF623520051063C /* SettingsView.swift */; };
+		CC62C8DB2CF744850051063C /* AdvancedPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8DA2CF744850051063C /* AdvancedPageControl.swift */; };
+		CC62C8DD2CF7448B0051063C /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8DC2CF7448B0051063C /* ColorUtils.swift */; };
+		CC62C8DF2CF744910051063C /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8DE2CF744910051063C /* Drawer.swift */; };
+		CC62C8E22CF7465D0051063C /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8E12CF7465D0051063C /* PaymentViewController.swift */; };
+		CC62C8E42CF747340051063C /* PaymentAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8E32CF747340051063C /* PaymentAssembly.swift */; };
+		CC62C8E62CF7473A0051063C /* PaymentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8E52CF7473A0051063C /* PaymentRouter.swift */; };
+		CC62C8E92CF74CDB0051063C /* PaymentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8E82CF74CDB0051063C /* PaymentButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +105,13 @@
 		CC62C8D22CF61C090051063C /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		CC62C8D42CF61C100051063C /* SettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAssembly.swift; sourceTree = "<group>"; };
 		CC62C8D72CF623520051063C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CC62C8DA2CF744850051063C /* AdvancedPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedPageControl.swift; sourceTree = "<group>"; };
+		CC62C8DC2CF7448B0051063C /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
+		CC62C8DE2CF744910051063C /* Drawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
+		CC62C8E12CF7465D0051063C /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		CC62C8E32CF747340051063C /* PaymentAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAssembly.swift; sourceTree = "<group>"; };
+		CC62C8E52CF7473A0051063C /* PaymentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRouter.swift; sourceTree = "<group>"; };
+		CC62C8E82CF74CDB0051063C /* PaymentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +196,7 @@
 		CC62C8822CF5EC8D0051063C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CC62C8E02CF7464C0051063C /* Payment */,
 				CC62C8CF2CF61BF90051063C /* Settings */,
 				CC62C8C82CF61BD90051063C /* Tracking */,
 				CC62C8C12CF61BBC0051063C /* Home */,
@@ -218,6 +233,8 @@
 		CC62C8852CF5EC9F0051063C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CC62C8E72CF74CCC0051063C /* PaymentButton */,
+				CC62C8D92CF744750051063C /* PageControl */,
 				CC62C8D62CF623490051063C /* SettingsView */,
 			);
 			path = Components;
@@ -318,6 +335,34 @@
 			path = SettingsView;
 			sourceTree = "<group>";
 		};
+		CC62C8D92CF744750051063C /* PageControl */ = {
+			isa = PBXGroup;
+			children = (
+				CC62C8DA2CF744850051063C /* AdvancedPageControl.swift */,
+				CC62C8DC2CF7448B0051063C /* ColorUtils.swift */,
+				CC62C8DE2CF744910051063C /* Drawer.swift */,
+			);
+			path = PageControl;
+			sourceTree = "<group>";
+		};
+		CC62C8E02CF7464C0051063C /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				CC62C8E12CF7465D0051063C /* PaymentViewController.swift */,
+				CC62C8E32CF747340051063C /* PaymentAssembly.swift */,
+				CC62C8E52CF7473A0051063C /* PaymentRouter.swift */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		CC62C8E72CF74CCC0051063C /* PaymentButton */ = {
+			isa = PBXGroup;
+			children = (
+				CC62C8E82CF74CDB0051063C /* PaymentButton.swift */,
+			);
+			path = PaymentButton;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -407,13 +452,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC62C8BB2CF606900051063C /* OnboardingAssembly.swift in Sources */,
+				CC62C8DD2CF7448B0051063C /* ColorUtils.swift in Sources */,
 				CC62C89A2CF5ED940051063C /* CollectionVIew.swift in Sources */,
 				CC62C8D52CF61C100051063C /* SettingsAssembly.swift in Sources */,
+				CC62C8DF2CF744910051063C /* Drawer.swift in Sources */,
 				CC62C8A22CF5EDE00051063C /* StackView.swift in Sources */,
 				CC62C8A02CF5EDDB0051063C /* UILabel.swift in Sources */,
 				CC62C8CC2CF61BF00051063C /* TrackingAssembly.swift in Sources */,
 				CC62C8522CF5E8B60051063C /* AppDelegate.swift in Sources */,
 				CC62C8CE2CF61BF70051063C /* TrackingRouter.swift in Sources */,
+				CC62C8DB2CF744850051063C /* AdvancedPageControl.swift in Sources */,
 				CC62C88D2CF5ECC30051063C /* BaseRouter.swift in Sources */,
 				CC62C88B2CF5ECBE0051063C /* ReusableView.swift in Sources */,
 				CC62C8BD2CF606960051063C /* OnboardingRouter.swift in Sources */,
@@ -422,10 +470,12 @@
 				CC62C8B92CF606880051063C /* OnboardingViewController.swift in Sources */,
 				CC62C8982CF5ED8E0051063C /* TableView.swift in Sources */,
 				CC62C8C32CF61BCA0051063C /* HomeViewController.swift in Sources */,
+				CC62C8E22CF7465D0051063C /* PaymentViewController.swift in Sources */,
 				CC62C8C52CF61BD10051063C /* HomeAssembly.swift in Sources */,
 				CC62C8B22CF5F13A0051063C /* UntilOnboardingAssembly.swift in Sources */,
 				CC62C8B72CF6067F0051063C /* OnboardingCell.swift in Sources */,
 				CC62C8892CF5ECB70051063C /* BaseViewController.swift in Sources */,
+				CC62C8E92CF74CDB0051063C /* PaymentButton.swift in Sources */,
 				CC62C89E2CF5EDD40051063C /* UIDevice.swift in Sources */,
 				CC62C8D82CF623520051063C /* SettingsView.swift in Sources */,
 				CC62C8C02CF61BB90051063C /* TabBarViewController.swift in Sources */,
@@ -436,8 +486,10 @@
 				CC62C8932CF5ECE60051063C /* ViewControllerFactory.swift in Sources */,
 				CC62C8B02CF5F1330051063C /* UntilOnboardingViewController.swift in Sources */,
 				CC62C8B42CF5F14B0051063C /* UntilOnboardingRouter.swift in Sources */,
+				CC62C8E42CF747340051063C /* PaymentAssembly.swift in Sources */,
 				CC62C8A42CF5EDE50051063C /* String.swift in Sources */,
 				CC62C8542CF5E8B60051063C /* SceneDelegate.swift in Sources */,
+				CC62C8E62CF7473A0051063C /* PaymentRouter.swift in Sources */,
 				CC62C8872CF5ECB00051063C /* Setupable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

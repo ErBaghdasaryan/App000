@@ -9,7 +9,7 @@ import UIKit
 import AppViewModel
 import SnapKit
 
-class SettingsViewController: BaseViewController, UICollectionViewDelegate {
+class SettingsViewController: BaseViewController {
 
     var viewModel: ViewModel?
 

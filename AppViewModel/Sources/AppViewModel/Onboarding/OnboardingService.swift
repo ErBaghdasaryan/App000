@@ -29,9 +29,6 @@ public class OnboardingService: IOnboardingService {
             OnboardingPresentationModel(image: "onboarding4",
                                         header: "Rate our app in the AppStore",
                                         description: "Help make the app even better."),
-            OnboardingPresentationModel(image: "onboarding5",
-                                        header: "Don't miss anything",
-                                        description: "Don't miss the most userful information")
         ]
     }
 }
