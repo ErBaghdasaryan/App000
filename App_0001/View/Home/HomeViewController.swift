@@ -205,6 +205,7 @@ extension HomeViewController: UITextFieldDelegate, UITextViewDelegate {
 
     private func editUser(for index: Int) {
         guard let navigationController = self.navigationController else { return }
+        self.viewModel?.loadData()
         let model = self.viewModel?.users[index]
 
         HomeRouter.showAddUserViewController(in: navigationController,
@@ -258,14 +259,15 @@ extension HomeViewController: UISearchBarDelegate {
                     if let image = image {
 
                         let userModel = UserModel(userID: user.userID,
-                                              name: user.name,
-                                              username: user.username,
-                                              avatar: image,
-                                              description: user.description,
-                                              totalPublications: user.totalPublications,
-                                              totalSubscribers: user.totalSubscribers,
-                                              totalSubscriptions: user.totalSubscriptions,
-                                              isSaved: false)
+                                                  name: user.name,
+                                                  username: user.username,
+                                                  avatar: image,
+                                                  description: user.description,
+                                                  totalPublications: user.totalPublications,
+                                                  totalSubscribers: user.totalSubscribers,
+                                                  totalSubscriptions: user.totalSubscriptions,
+                                                  requestedURL: user.requestedURL,
+                                                  isSaved: false)
 
                         self.viewModel?.addUser(user: userModel)
                         self.openAddUserPage(userModel: userModel)

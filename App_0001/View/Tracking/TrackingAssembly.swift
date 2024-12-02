@@ -21,6 +21,6 @@ final class TrackingAssembly: Assembly {
     }
 
     func registerViewModelServices(in container: Container) {
-        container.autoregister(ITrackingService.self, initializer: TrackingService.init)
+        container.autoregister(IHomeService.self, initializer: HomeService.init)
     }
 }

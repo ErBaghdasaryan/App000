@@ -66,6 +66,10 @@
 		CC62C8F72CFE0A910051063C /* AddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8F62CFE0A910051063C /* AddUserViewController.swift */; };
 		CC62C8F92CFE0A980051063C /* AddUserAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8F82CFE0A980051063C /* AddUserAssembly.swift */; };
 		CC62C8FB2CFE0AA00051063C /* AddUserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8FA2CFE0AA00051063C /* AddUserRouter.swift */; };
+		CC62C8FE2CFE479C0051063C /* SavedUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8FD2CFE479C0051063C /* SavedUserTableViewCell.swift */; };
+		CC62C9012CFE52460051063C /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C9002CFE52460051063C /* StatView.swift */; };
+		CC62C9042CFE54610051063C /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C9032CFE54610051063C /* DescriptionView.swift */; };
+		CC62C9072CFE56290051063C /* PublicationsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C9062CFE56290051063C /* PublicationsButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +128,10 @@
 		CC62C8F62CFE0A910051063C /* AddUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserViewController.swift; sourceTree = "<group>"; };
 		CC62C8F82CFE0A980051063C /* AddUserAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserAssembly.swift; sourceTree = "<group>"; };
 		CC62C8FA2CFE0AA00051063C /* AddUserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserRouter.swift; sourceTree = "<group>"; };
+		CC62C8FD2CFE479C0051063C /* SavedUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedUserTableViewCell.swift; sourceTree = "<group>"; };
+		CC62C9002CFE52460051063C /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
+		CC62C9032CFE54610051063C /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
+		CC62C9062CFE56290051063C /* PublicationsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationsButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +255,9 @@
 		CC62C8852CF5EC9F0051063C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CC62C9052CFE56020051063C /* PublicationsButton */,
+				CC62C9022CFE54570051063C /* DescriptionView */,
+				CC62C8FF2CFE52350051063C /* StatView */,
 				CC62C8E72CF74CCC0051063C /* PaymentButton */,
 				CC62C8D92CF744750051063C /* PageControl */,
 				CC62C8D62CF623490051063C /* SettingsView */,
@@ -326,6 +337,7 @@
 		CC62C8C82CF61BD90051063C /* Tracking */ = {
 			isa = PBXGroup;
 			children = (
+				CC62C8FC2CFE47910051063C /* Cell */,
 				CC62C8C92CF61BE90051063C /* TrackingVIewController.swift */,
 				CC62C8CB2CF61BF00051063C /* TrackingAssembly.swift */,
 				CC62C8CD2CF61BF70051063C /* TrackingRouter.swift */,
@@ -396,6 +408,38 @@
 				CC62C8FA2CFE0AA00051063C /* AddUserRouter.swift */,
 			);
 			path = AddUser;
+			sourceTree = "<group>";
+		};
+		CC62C8FC2CFE47910051063C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CC62C8FD2CFE479C0051063C /* SavedUserTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		CC62C8FF2CFE52350051063C /* StatView */ = {
+			isa = PBXGroup;
+			children = (
+				CC62C9002CFE52460051063C /* StatView.swift */,
+			);
+			path = StatView;
+			sourceTree = "<group>";
+		};
+		CC62C9022CFE54570051063C /* DescriptionView */ = {
+			isa = PBXGroup;
+			children = (
+				CC62C9032CFE54610051063C /* DescriptionView.swift */,
+			);
+			path = DescriptionView;
+			sourceTree = "<group>";
+		};
+		CC62C9052CFE56020051063C /* PublicationsButton */ = {
+			isa = PBXGroup;
+			children = (
+				CC62C9062CFE56290051063C /* PublicationsButton.swift */,
+			);
+			path = PublicationsButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -504,9 +548,11 @@
 				CC62C8DB2CF744850051063C /* AdvancedPageControl.swift in Sources */,
 				CC62C88D2CF5ECC30051063C /* BaseRouter.swift in Sources */,
 				CC62C88B2CF5ECBE0051063C /* ReusableView.swift in Sources */,
+				CC62C9042CFE54610051063C /* DescriptionView.swift in Sources */,
 				CC62C8BD2CF606960051063C /* OnboardingRouter.swift in Sources */,
 				CC62C8912CF5ECDD0051063C /* ServiceAssembly.swift in Sources */,
 				CC62C8D32CF61C090051063C /* SettingsRouter.swift in Sources */,
+				CC62C8FE2CFE479C0051063C /* SavedUserTableViewCell.swift in Sources */,
 				CC62C8B92CF606880051063C /* OnboardingViewController.swift in Sources */,
 				CC62C8F02CFDE23D0051063C /* SubscribeButton.swift in Sources */,
 				CC62C8982CF5ED8E0051063C /* TableView.swift in Sources */,
@@ -516,6 +562,7 @@
 				CC62C8B22CF5F13A0051063C /* UntilOnboardingAssembly.swift in Sources */,
 				CC62C8B72CF6067F0051063C /* OnboardingCell.swift in Sources */,
 				CC62C8892CF5ECB70051063C /* BaseViewController.swift in Sources */,
+				CC62C9072CFE56290051063C /* PublicationsButton.swift in Sources */,
 				CC62C8FB2CFE0AA00051063C /* AddUserRouter.swift in Sources */,
 				CC62C8E92CF74CDB0051063C /* PaymentButton.swift in Sources */,
 				CC62C8F92CFE0A980051063C /* AddUserAssembly.swift in Sources */,
@@ -531,6 +578,7 @@
 				CC62C8B42CF5F14B0051063C /* UntilOnboardingRouter.swift in Sources */,
 				CC62C8E42CF747340051063C /* PaymentAssembly.swift in Sources */,
 				CC62C8A42CF5EDE50051063C /* String.swift in Sources */,
+				CC62C9012CFE52460051063C /* StatView.swift in Sources */,
 				CC62C8542CF5E8B60051063C /* SceneDelegate.swift in Sources */,
 				CC62C8E62CF7473A0051063C /* PaymentRouter.swift in Sources */,
 				CC62C8872CF5ECB00051063C /* Setupable.swift in Sources */,

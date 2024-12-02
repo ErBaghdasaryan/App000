@@ -16,9 +16,10 @@ public struct UserModel {
     public let totalPublications: Int
     public let totalSubscribers: Int
     public let totalSubscriptions: Int
+    public let requestedURL: String
     public let isSaved: Bool
 
-    public init(id: Int? = nil, userID: String, name: String, username: String, avatar: UIImage, description: String, totalPublications: Int, totalSubscribers: Int, totalSubscriptions: Int, isSaved: Bool) {
+    public init(id: Int? = nil, userID: String, name: String, username: String, avatar: UIImage, description: String, totalPublications: Int, totalSubscribers: Int, totalSubscriptions: Int, requestedURL: String, isSaved: Bool) {
         self.id = id
         self.userID = userID
         self.name = name
@@ -28,6 +29,7 @@ public struct UserModel {
         self.totalPublications = totalPublications
         self.totalSubscribers = totalSubscribers
         self.totalSubscriptions = totalSubscriptions
+        self.requestedURL = requestedURL
         self.isSaved = isSaved
     }
 }

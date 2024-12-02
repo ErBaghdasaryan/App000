@@ -34,6 +34,7 @@ public class HomeService: IHomeService {
         let totalPublicationsColumn = Expression<Int>("totalPublications")
         let totalSubscribersColumn = Expression<Int>("totalSubscribers")
         let totalSubscriptionsColumn = Expression<Int>("totalSubscriptions")
+        let requestedURLColumn = Expression<String>("requestedURL")
         let isSavedColumn = Expression<Bool>("isSaved")
 
         try db.run(users.create(ifNotExists: true) { t in
@@ -46,6 +47,7 @@ public class HomeService: IHomeService {
             t.column(totalPublicationsColumn)
             t.column(totalSubscribersColumn)
             t.column(totalSubscriptionsColumn)
+            t.column(requestedURLColumn)
             t.column(isSavedColumn)
         })
 
@@ -62,6 +64,7 @@ public class HomeService: IHomeService {
             totalPublicationsColumn <- model.totalPublications,
             totalSubscribersColumn <- model.totalSubscribers,
             totalSubscriptionsColumn <- model.totalSubscriptions,
+            requestedURLColumn <- model.requestedURL,
             isSavedColumn <- model.isSaved
         ))
 
@@ -74,6 +77,7 @@ public class HomeService: IHomeService {
                          totalPublications: model.totalPublications,
                          totalSubscribers: model.totalSubscribers,
                          totalSubscriptions: model.totalSubscriptions,
+                         requestedURL: model.requestedURL,
                          isSaved: model.isSaved)
     }
 
@@ -89,6 +93,7 @@ public class HomeService: IHomeService {
         let totalPublicationsColumn = Expression<Int>("totalPublications")
         let totalSubscribersColumn = Expression<Int>("totalSubscribers")
         let totalSubscriptionsColumn = Expression<Int>("totalSubscriptions")
+        let requestedURLColumn = Expression<String>("requestedURL")
         let isSavedColumn = Expression<Bool>("isSaved")
 
         var result: [UserModel] = []
@@ -107,6 +112,7 @@ public class HomeService: IHomeService {
                 totalPublications: user[totalPublicationsColumn],
                 totalSubscribers: user[totalSubscribersColumn],
                 totalSubscriptions: user[totalSubscriptionsColumn],
+                requestedURL: user[requestedURLColumn],
                 isSaved: user[isSavedColumn]
             )
 
@@ -137,9 +143,10 @@ public class HomeService: IHomeService {
         let totalPublicationsColumn = Expression<Int>("totalPublications")
         let totalSubscribersColumn = Expression<Int>("totalSubscribers")
         let totalSubscriptionsColumn = Expression<Int>("totalSubscriptions")
+        let requestedURLColumn = Expression<String>("requestedURL")
         let isSavedColumn = Expression<Bool>("isSaved")
 
-        let userToUpdate = users.filter(idColumn == user.id!)
+        let userToUpdate = users.filter(userIDColumn == user.userID)
         guard let imageData = user.avatar.pngData() else {
             throw NSError(domain: "ImageConversionError", code: 1, userInfo: nil)
         }
@@ -153,6 +160,7 @@ public class HomeService: IHomeService {
             totalPublicationsColumn <- user.totalPublications,
             totalSubscribersColumn <- user.totalSubscribers,
             totalSubscriptionsColumn <- user.totalSubscriptions,
+            requestedURLColumn <- user.requestedURL,
             isSavedColumn <- user.isSaved
         ))
     }
