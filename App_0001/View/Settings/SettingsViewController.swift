@@ -13,6 +13,7 @@ class SettingsViewController: BaseViewController {
 
     var viewModel: ViewModel?
 
+    private let subscribe = SubscribeButton()
     private let usage = SettingsView(title: "Usage policy",
                                      image: "usage")
     private let rate = SettingsView(title: "Rate our app",
@@ -34,6 +35,7 @@ class SettingsViewController: BaseViewController {
             .foregroundColor: UIColor.white
         ]
 
+        self.view.addSubview(subscribe)
         self.view.addSubview(usage)
         self.view.addSubview(rate)
         self.view.addSubview(share)
@@ -46,7 +48,7 @@ class SettingsViewController: BaseViewController {
     }
 
     func setupConstraints() {
-        usage.snp.makeConstraints { view in
+        subscribe.snp.makeConstraints { view in
             view.top.equalToSuperview().offset(121)
             view.leading.equalToSuperview().offset(16)
             view.trailing.equalToSuperview().inset(16)
@@ -54,7 +56,7 @@ class SettingsViewController: BaseViewController {
         }
 
         rate.snp.makeConstraints { view in
-            view.top.equalTo(usage.snp.bottom).offset(12)
+            view.top.equalTo(subscribe.snp.bottom).offset(12)
             view.leading.equalToSuperview().offset(16)
             view.trailing.equalToSuperview().inset(16)
             view.height.equalTo(60)
@@ -62,6 +64,13 @@ class SettingsViewController: BaseViewController {
 
         share.snp.makeConstraints { view in
             view.top.equalTo(rate.snp.bottom).offset(12)
+            view.leading.equalToSuperview().offset(16)
+            view.trailing.equalToSuperview().inset(16)
+            view.height.equalTo(60)
+        }
+
+        usage.snp.makeConstraints { view in
+            view.top.equalTo(share.snp.bottom).offset(12)
             view.leading.equalToSuperview().offset(16)
             view.trailing.equalToSuperview().inset(16)
             view.height.equalTo(60)
@@ -80,6 +89,13 @@ extension SettingsViewController {
         self.usage.addTarget(self, action: #selector(usageTapped), for: .touchUpInside)
         self.rate.addTarget(self, action: #selector(rateTapped), for: .touchUpInside)
         self.share.addTarget(self, action: #selector(shareTapped), for: .touchUpInside)
+        self.subscribe.addTarget(self, action: #selector(openSubscribtion), for: .touchUpInside)
+    }
+
+    @objc func openSubscribtion() {
+        guard let navigationController = self.navigationController else { return }
+
+        SettingsRouter.showPaymentViewController(in: navigationController)
     }
 
     @objc func shareTapped() {

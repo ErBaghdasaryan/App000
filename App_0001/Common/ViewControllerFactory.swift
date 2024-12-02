@@ -51,6 +51,14 @@ final class ViewControllerFactory {
         return viewController
     }
 
+    //MARK: AddUser
+    static func makeAddUserViewController(navigationModel: UserNavigationModel) -> AddUserViewController {
+        let assembler = Assembler(commonAssemblies + [AddUserAssembly()])
+        let viewController = AddUserViewController()
+        viewController.viewModel = assembler.resolver.resolve(IAddUserViewModel.self, argument: navigationModel)
+        return viewController
+    }
+
     //MARK: Tracking
     static func makeTrackingViewController() -> TrackingVIewController {
         let assembler = Assembler(commonAssemblies + [TrackingAssembly()])

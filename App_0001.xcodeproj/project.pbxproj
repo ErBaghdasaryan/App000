@@ -59,6 +59,13 @@
 		CC62C8E42CF747340051063C /* PaymentAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8E32CF747340051063C /* PaymentAssembly.swift */; };
 		CC62C8E62CF7473A0051063C /* PaymentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8E52CF7473A0051063C /* PaymentRouter.swift */; };
 		CC62C8E92CF74CDB0051063C /* PaymentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8E82CF74CDB0051063C /* PaymentButton.swift */; };
+		CC62C8EC2CFDDFCF0051063C /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CC62C8EB2CFDDFCF0051063C /* SDWebImage */; };
+		CC62C8EE2CFDDFCF0051063C /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CC62C8ED2CFDDFCF0051063C /* SDWebImageMapKit */; };
+		CC62C8F02CFDE23D0051063C /* SubscribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8EF2CFDE23D0051063C /* SubscribeButton.swift */; };
+		CC62C8F32CFDE8AF0051063C /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8F22CFDE8AF0051063C /* RecentTableViewCell.swift */; };
+		CC62C8F72CFE0A910051063C /* AddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8F62CFE0A910051063C /* AddUserViewController.swift */; };
+		CC62C8F92CFE0A980051063C /* AddUserAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8F82CFE0A980051063C /* AddUserAssembly.swift */; };
+		CC62C8FB2CFE0AA00051063C /* AddUserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8FA2CFE0AA00051063C /* AddUserRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +119,11 @@
 		CC62C8E32CF747340051063C /* PaymentAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAssembly.swift; sourceTree = "<group>"; };
 		CC62C8E52CF7473A0051063C /* PaymentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRouter.swift; sourceTree = "<group>"; };
 		CC62C8E82CF74CDB0051063C /* PaymentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentButton.swift; sourceTree = "<group>"; };
+		CC62C8EF2CFDE23D0051063C /* SubscribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeButton.swift; sourceTree = "<group>"; };
+		CC62C8F22CFDE8AF0051063C /* RecentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTableViewCell.swift; sourceTree = "<group>"; };
+		CC62C8F62CFE0A910051063C /* AddUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserViewController.swift; sourceTree = "<group>"; };
+		CC62C8F82CFE0A980051063C /* AddUserAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserAssembly.swift; sourceTree = "<group>"; };
+		CC62C8FA2CFE0AA00051063C /* AddUserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,8 +134,10 @@
 				CC62C87B2CF5EC600051063C /* AppModel in Frameworks */,
 				CC62C86C2CF5E94F0051063C /* SQLite in Frameworks */,
 				CC62C8672CF5E9440051063C /* SnapKit in Frameworks */,
+				CC62C8EC2CFDDFCF0051063C /* SDWebImage in Frameworks */,
 				CC62C86F2CF5E95C0051063C /* Swinject in Frameworks */,
 				CC62C8742CF5E9690051063C /* SwinjectAutoregistration in Frameworks */,
+				CC62C8EE2CFDDFCF0051063C /* SDWebImageMapKit in Frameworks */,
 				CC62C87D2CF5EC600051063C /* AppViewModel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +314,8 @@
 		CC62C8C12CF61BBC0051063C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CC62C8F42CFE0A800051063C /* AddUser */,
+				CC62C8F12CFDE8A20051063C /* Cell */,
 				CC62C8C22CF61BCA0051063C /* HomeViewController.swift */,
 				CC62C8C42CF61BD10051063C /* HomeAssembly.swift */,
 				CC62C8C62CF61BD60051063C /* HomeRouter.swift */,
@@ -331,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				CC62C8D72CF623520051063C /* SettingsView.swift */,
+				CC62C8EF2CFDE23D0051063C /* SubscribeButton.swift */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -363,6 +380,24 @@
 			path = PaymentButton;
 			sourceTree = "<group>";
 		};
+		CC62C8F12CFDE8A20051063C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CC62C8F22CFDE8AF0051063C /* RecentTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		CC62C8F42CFE0A800051063C /* AddUser */ = {
+			isa = PBXGroup;
+			children = (
+				CC62C8F62CFE0A910051063C /* AddUserViewController.swift */,
+				CC62C8F82CFE0A980051063C /* AddUserAssembly.swift */,
+				CC62C8FA2CFE0AA00051063C /* AddUserRouter.swift */,
+			);
+			path = AddUser;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -386,6 +421,8 @@
 				CC62C8732CF5E9690051063C /* SwinjectAutoregistration */,
 				CC62C87A2CF5EC600051063C /* AppModel */,
 				CC62C87C2CF5EC600051063C /* AppViewModel */,
+				CC62C8EB2CFDDFCF0051063C /* SDWebImage */,
+				CC62C8ED2CFDDFCF0051063C /* SDWebImageMapKit */,
 			);
 			productName = App_0001;
 			productReference = CC62C84E2CF5E8B60051063C /* App_0001.app */;
@@ -420,6 +457,7 @@
 				CC62C86A2CF5E94F0051063C /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 				CC62C86D2CF5E95C0051063C /* XCRemoteSwiftPackageReference "Swinject" */,
 				CC62C8722CF5E9690051063C /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
+				CC62C8EA2CFDDFCF0051063C /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = CC62C84F2CF5E8B60051063C /* Products */;
 			projectDirPath = "";
@@ -454,7 +492,9 @@
 				CC62C8BB2CF606900051063C /* OnboardingAssembly.swift in Sources */,
 				CC62C8DD2CF7448B0051063C /* ColorUtils.swift in Sources */,
 				CC62C89A2CF5ED940051063C /* CollectionVIew.swift in Sources */,
+				CC62C8F72CFE0A910051063C /* AddUserViewController.swift in Sources */,
 				CC62C8D52CF61C100051063C /* SettingsAssembly.swift in Sources */,
+				CC62C8F32CFDE8AF0051063C /* RecentTableViewCell.swift in Sources */,
 				CC62C8DF2CF744910051063C /* Drawer.swift in Sources */,
 				CC62C8A22CF5EDE00051063C /* StackView.swift in Sources */,
 				CC62C8A02CF5EDDB0051063C /* UILabel.swift in Sources */,
@@ -468,6 +508,7 @@
 				CC62C8912CF5ECDD0051063C /* ServiceAssembly.swift in Sources */,
 				CC62C8D32CF61C090051063C /* SettingsRouter.swift in Sources */,
 				CC62C8B92CF606880051063C /* OnboardingViewController.swift in Sources */,
+				CC62C8F02CFDE23D0051063C /* SubscribeButton.swift in Sources */,
 				CC62C8982CF5ED8E0051063C /* TableView.swift in Sources */,
 				CC62C8C32CF61BCA0051063C /* HomeViewController.swift in Sources */,
 				CC62C8E22CF7465D0051063C /* PaymentViewController.swift in Sources */,
@@ -475,7 +516,9 @@
 				CC62C8B22CF5F13A0051063C /* UntilOnboardingAssembly.swift in Sources */,
 				CC62C8B72CF6067F0051063C /* OnboardingCell.swift in Sources */,
 				CC62C8892CF5ECB70051063C /* BaseViewController.swift in Sources */,
+				CC62C8FB2CFE0AA00051063C /* AddUserRouter.swift in Sources */,
 				CC62C8E92CF74CDB0051063C /* PaymentButton.swift in Sources */,
+				CC62C8F92CFE0A980051063C /* AddUserAssembly.swift in Sources */,
 				CC62C89E2CF5EDD40051063C /* UIDevice.swift in Sources */,
 				CC62C8D82CF623520051063C /* SettingsView.swift in Sources */,
 				CC62C8C02CF61BB90051063C /* TabBarViewController.swift in Sources */,
@@ -626,7 +669,7 @@
 				DEVELOPMENT_TEAM = 5PTH9U4CB9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App_0001/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = FirstApp;
+				INFOPLIST_KEY_CFBundleDisplayName = InstaViewer;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -659,7 +702,7 @@
 				DEVELOPMENT_TEAM = 5PTH9U4CB9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App_0001/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = FirstApp;
+				INFOPLIST_KEY_CFBundleDisplayName = InstaViewer;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -738,6 +781,14 @@
 				minimumVersion = 2.9.1;
 			};
 		};
+		CC62C8EA2CFDDFCF0051063C /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.20.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -768,6 +819,16 @@
 		CC62C87C2CF5EC600051063C /* AppViewModel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppViewModel;
+		};
+		CC62C8EB2CFDDFCF0051063C /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC62C8EA2CFDDFCF0051063C /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		CC62C8ED2CFDDFCF0051063C /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC62C8EA2CFDDFCF0051063C /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

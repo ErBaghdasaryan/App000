@@ -1,23 +1,21 @@
 //
-//  SettingsView.swift
+//  SubscribeButton.swift
 //  App_0001
 //
-//  Created by Er Baghdasaryan on 26.11.24.
+//  Created by Er Baghdasaryan on 02.12.24.
 //
 
 import UIKit
 import AppModel
 
-final class SettingsView: UIButton {
-    private let title = UILabel(text: "",
-                                textColor: .white,
+final class SubscribeButton: UIButton {
+    private let title = UILabel(text: "Subscribe",
+                                textColor: .black,
                                 font: UIFont(name: "SFProText-Semibold", size: 17))
     private var image = UIImageView()
-    private let arrowImage = UIImageView(image: .init(named: "settingssButton"))
+    private let arrowImage = UIImageView(image: .init(named: "settingssButton")?.withRenderingMode(.alwaysTemplate))
 
-    public init(title: String, image: String) {
-        self.title.text = title
-        self.image.image = UIImage(named: image)
+    public init() {
         super.init(frame: .zero)
         setupUI()
     }
@@ -28,11 +26,14 @@ final class SettingsView: UIButton {
 
     private func setupUI() {
 
-        self.backgroundColor = UIColor.white.withAlphaComponent(0.05)
-
+        self.backgroundColor = UIColor.white
         self.layer.cornerRadius = 10
 
         self.title.textAlignment = .left
+
+        self.image.image = UIImage(named: "subscribe")
+
+        self.arrowImage.tintColor = .black
 
         addSubview(image)
         addSubview(title)
