@@ -25,6 +25,7 @@ public protocol IHomeService {
 public class HomeService: IHomeService {
 
     private let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+    typealias Expression = SQLite.Expression
 
     public init() { }
 
