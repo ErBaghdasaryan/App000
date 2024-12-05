@@ -236,7 +236,7 @@ extension HomeViewController: UISearchBarDelegate {
         self.activityIndicator.startAnimating()
 
         let url: String
-        if input.contains("www.instagram.com/") {
+        if input.contains("https://") {
             url = input
         } else {
             url = "https://www.instagram.com/\(input)"

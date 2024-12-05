@@ -70,6 +70,12 @@
 		CC62C9012CFE52460051063C /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C9002CFE52460051063C /* StatView.swift */; };
 		CC62C9042CFE54610051063C /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C9032CFE54610051063C /* DescriptionView.swift */; };
 		CC62C9072CFE56290051063C /* PublicationsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C9062CFE56290051063C /* PublicationsButton.swift */; };
+		CC93DB132D00807F004C2A08 /* UsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB122D00807F004C2A08 /* UsageViewController.swift */; };
+		CC93DB152D008373004C2A08 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB142D008373004C2A08 /* Int.swift */; };
+		CC93DB182D0087B7004C2A08 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB172D0087B7004C2A08 /* HistoryViewController.swift */; };
+		CC93DB1A2D0087C0004C2A08 /* HistoryAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB192D0087C0004C2A08 /* HistoryAssembly.swift */; };
+		CC93DB1C2D0087CC004C2A08 /* HistoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB1B2D0087CC004C2A08 /* HistoryRouter.swift */; };
+		CC93DB1F2D008D27004C2A08 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB1E2D008D27004C2A08 /* StoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +138,12 @@
 		CC62C9002CFE52460051063C /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
 		CC62C9032CFE54610051063C /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		CC62C9062CFE56290051063C /* PublicationsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationsButton.swift; sourceTree = "<group>"; };
+		CC93DB122D00807F004C2A08 /* UsageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewController.swift; sourceTree = "<group>"; };
+		CC93DB142D008373004C2A08 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		CC93DB172D0087B7004C2A08 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		CC93DB192D0087C0004C2A08 /* HistoryAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryAssembly.swift; sourceTree = "<group>"; };
+		CC93DB1B2D0087CC004C2A08 /* HistoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRouter.swift; sourceTree = "<group>"; };
+		CC93DB1E2D008D27004C2A08 /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +260,7 @@
 				CC62C89F2CF5EDDB0051063C /* UILabel.swift */,
 				CC62C8A12CF5EDE00051063C /* StackView.swift */,
 				CC62C8A32CF5EDE50051063C /* String.swift */,
+				CC93DB142D008373004C2A08 /* Int.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -325,6 +338,7 @@
 		CC62C8C12CF61BBC0051063C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CC93DB162D0087A9004C2A08 /* History */,
 				CC62C8F42CFE0A800051063C /* AddUser */,
 				CC62C8F12CFDE8A20051063C /* Cell */,
 				CC62C8C22CF61BCA0051063C /* HomeViewController.swift */,
@@ -348,6 +362,7 @@
 		CC62C8CF2CF61BF90051063C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				CC93DB112D008073004C2A08 /* Usage */,
 				CC62C8D02CF61C030051063C /* SettingsViewController.swift */,
 				CC62C8D22CF61C090051063C /* SettingsRouter.swift */,
 				CC62C8D42CF61C100051063C /* SettingsAssembly.swift */,
@@ -440,6 +455,33 @@
 				CC62C9062CFE56290051063C /* PublicationsButton.swift */,
 			);
 			path = PublicationsButton;
+			sourceTree = "<group>";
+		};
+		CC93DB112D008073004C2A08 /* Usage */ = {
+			isa = PBXGroup;
+			children = (
+				CC93DB122D00807F004C2A08 /* UsageViewController.swift */,
+			);
+			path = Usage;
+			sourceTree = "<group>";
+		};
+		CC93DB162D0087A9004C2A08 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				CC93DB1D2D008D20004C2A08 /* Cell */,
+				CC93DB172D0087B7004C2A08 /* HistoryViewController.swift */,
+				CC93DB192D0087C0004C2A08 /* HistoryAssembly.swift */,
+				CC93DB1B2D0087CC004C2A08 /* HistoryRouter.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		CC93DB1D2D008D20004C2A08 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CC93DB1E2D008D27004C2A08 /* StoryCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -539,14 +581,17 @@
 				CC62C8F72CFE0A910051063C /* AddUserViewController.swift in Sources */,
 				CC62C8D52CF61C100051063C /* SettingsAssembly.swift in Sources */,
 				CC62C8F32CFDE8AF0051063C /* RecentTableViewCell.swift in Sources */,
+				CC93DB152D008373004C2A08 /* Int.swift in Sources */,
 				CC62C8DF2CF744910051063C /* Drawer.swift in Sources */,
 				CC62C8A22CF5EDE00051063C /* StackView.swift in Sources */,
+				CC93DB1F2D008D27004C2A08 /* StoryCell.swift in Sources */,
 				CC62C8A02CF5EDDB0051063C /* UILabel.swift in Sources */,
 				CC62C8CC2CF61BF00051063C /* TrackingAssembly.swift in Sources */,
 				CC62C8522CF5E8B60051063C /* AppDelegate.swift in Sources */,
 				CC62C8CE2CF61BF70051063C /* TrackingRouter.swift in Sources */,
 				CC62C8DB2CF744850051063C /* AdvancedPageControl.swift in Sources */,
 				CC62C88D2CF5ECC30051063C /* BaseRouter.swift in Sources */,
+				CC93DB132D00807F004C2A08 /* UsageViewController.swift in Sources */,
 				CC62C88B2CF5ECBE0051063C /* ReusableView.swift in Sources */,
 				CC62C9042CFE54610051063C /* DescriptionView.swift in Sources */,
 				CC62C8BD2CF606960051063C /* OnboardingRouter.swift in Sources */,
@@ -568,12 +613,15 @@
 				CC62C8F92CFE0A980051063C /* AddUserAssembly.swift in Sources */,
 				CC62C89E2CF5EDD40051063C /* UIDevice.swift in Sources */,
 				CC62C8D82CF623520051063C /* SettingsView.swift in Sources */,
+				CC93DB1C2D0087CC004C2A08 /* HistoryRouter.swift in Sources */,
 				CC62C8C02CF61BB90051063C /* TabBarViewController.swift in Sources */,
 				CC62C89C2CF5ED9A0051063C /* UIColor.swift in Sources */,
 				CC62C8CA2CF61BE90051063C /* TrackingVIewController.swift in Sources */,
 				CC62C8C72CF61BD60051063C /* HomeRouter.swift in Sources */,
+				CC93DB1A2D0087C0004C2A08 /* HistoryAssembly.swift in Sources */,
 				CC62C8D12CF61C030051063C /* SettingsViewController.swift in Sources */,
 				CC62C8932CF5ECE60051063C /* ViewControllerFactory.swift in Sources */,
+				CC93DB182D0087B7004C2A08 /* HistoryViewController.swift in Sources */,
 				CC62C8B02CF5F1330051063C /* UntilOnboardingViewController.swift in Sources */,
 				CC62C8B42CF5F14B0051063C /* UntilOnboardingRouter.swift in Sources */,
 				CC62C8E42CF747340051063C /* PaymentAssembly.swift in Sources */,

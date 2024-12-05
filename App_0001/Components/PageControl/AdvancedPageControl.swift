@@ -50,6 +50,19 @@ public class AdvancedPageControlView: UIView {
         }
     }
 
+    public func setProgress(_ progress: CGFloat, animated: Bool) {
+        let clampedProgress = max(0, min(progress, 1))
+
+        if animated {
+            previuscurrentItem = drawer.currentItem
+            mustGoCurrentItem = clampedProgress * CGFloat(numberOfPages - 1)
+            startDisplayLink()
+        } else {
+            drawer.currentItem = clampedProgress * CGFloat(numberOfPages - 1)
+            setNeedsDisplay()
+        }
+    }
+
     override public var intrinsicContentSize: CGSize {
         return CGSize(width: self.drawer.size, height: self.drawer.size + 16)
     }

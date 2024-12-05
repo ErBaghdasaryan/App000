@@ -1,9 +1,10 @@
 //
-//  ResponsModel.swift
+//  ResponseModel.swift
 //  
 //
-//  Created by Er Baghdasaryan on 28.11.24.
+//  Created by Er Baghdasaryan on 04.12.24.
 //
+
 import Foundation
 
 // MARK: - Welcome

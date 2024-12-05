@@ -51,8 +51,8 @@ final class StatView: UIView {
         }
     }
 
-    public func setup(with count: Int) {
-        self.count.text = "\(count)"
+    public func setup(with count: String) {
+        self.count.text = count
         self.setupUI()
     }
 }

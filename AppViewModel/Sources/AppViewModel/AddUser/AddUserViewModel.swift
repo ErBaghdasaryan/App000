@@ -14,7 +14,7 @@ public protocol IAddUserViewModel {
     func doCall<T: Decodable>(
         from urlString: String,
         httpMethod: String,
-        urlParam: [String: String]?,
+        urlParam: [String: String],
         responseModel: T.Type,
         completion: @escaping (Result<T, Error>) -> Void
     )
@@ -41,14 +41,12 @@ public class AddUserViewModel: IAddUserViewModel {
     public func doCall<T: Decodable>(
         from urlString: String,
         httpMethod: String = "GET",
-        urlParam: [String: String]? = nil,
+        urlParam: [String: String],
         responseModel: T.Type,
         completion: @escaping (Result<T, Error>) -> Void
     ) {
         var components = URLComponents(string: urlString)
-        if let urlParams = urlParam {
-            components?.queryItems = urlParams.map { URLQueryItem(name: $0.key, value: $0.value) }
-        }
+        components?.queryItems = urlParam.map { URLQueryItem(name: $0.key, value: $0.value) }
 
         guard let finalURL = components?.url else {
             completion(.failure(NetworkError.invalidURL))

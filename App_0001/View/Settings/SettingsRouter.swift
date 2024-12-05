@@ -11,10 +11,11 @@ import AppViewModel
 
 final class SettingsRouter: BaseRouter {
     static func showUsageViewController(in navigationController: UINavigationController) {
-//        let viewController = ViewControllerFactory.makeTabBarViewController()
-//        viewController.navigationItem.hidesBackButton = true
-//        navigationController.navigationBar.isHidden = true
-//        navigationController.pushViewController(viewController, animated: true)
+        let viewController = ViewControllerFactory.makeUsageViewController()
+        viewController.navigationItem.hidesBackButton = false
+        navigationController.navigationBar.isHidden = false
+        viewController.hidesBottomBarWhenPushed = true
+        navigationController.pushViewController(viewController, animated: false)
     }
 
     static func showPaymentViewController(in navigationController: UINavigationController) {

@@ -14,6 +14,7 @@ class AddUserViewController: BaseViewController {
 
     var viewModel: ViewModel?
     private let image = UIImageView()
+    private let seeStory = UIButton(type: .system)
     private let name = UILabel(text: "",
                                textColor: UIColor.white,
                                font: UIFont(name: "SFProText-Regular", size: 16))
@@ -26,6 +27,7 @@ class AddUserViewController: BaseViewController {
     private let storiesButton = PublicationsButton(image: "stories")
     private let publicationButton = PublicationsButton(image: "publications")
     private var buttonsStack: UIStackView!
+    private var stories: [StoryItem]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +40,9 @@ class AddUserViewController: BaseViewController {
 
         self.image.image = model.avatar
         self.name.text = model.name
-        self.publications.setup(with: model.totalPublications)
-        self.subscribers.setup(with: model.totalSubscribers)
-        self.subscriptions.setup(with: model.totalSubscriptions)
+        self.publications.setup(with: "\(model.totalPublications)")
+        self.subscribers.setup(with: model.totalSubscribers.formattedWithSuffix())
+        self.subscriptions.setup(with: "\(model.totalSubscriptions)")
         self.descriptionView.setup(with: model.description)
     }
 
@@ -52,6 +54,10 @@ class AddUserViewController: BaseViewController {
         self.image.layer.masksToBounds = true
         self.image.layer.cornerRadius = 42
         self.image.contentMode = .scaleAspectFill
+
+        self.seeStory.layer.masksToBounds = true
+        self.seeStory.layer.cornerRadius = 42
+        self.seeStory.isUserInteractionEnabled = false
 
         self.line.backgroundColor = UIColor.white.withAlphaComponent(0.05)
 
@@ -67,6 +73,7 @@ class AddUserViewController: BaseViewController {
         self.storiesButton.isVisible = true
 
         self.view.addSubview(image)
+        self.view.addSubview(seeStory)
         self.view.addSubview(name)
         self.view.addSubview(line)
         self.view.addSubview(statStack)
@@ -78,6 +85,13 @@ class AddUserViewController: BaseViewController {
 
     private func setupConstraints() {
         image.snp.makeConstraints { view in
+            view.top.equalToSuperview().offset(114)
+            view.centerX.equalToSuperview()
+            view.width.equalTo(84)
+            view.height.equalTo(84)
+        }
+
+        seeStory.snp.makeConstraints { view in
             view.top.equalToSuperview().offset(114)
             view.centerX.equalToSuperview()
             view.width.equalTo(84)
@@ -132,14 +146,22 @@ class AddUserViewController: BaseViewController {
         
         let params = ["url": model.requestedURL,
                       "token": "0118a92e-50df-48k72-8442-63043f133a61"]
-        self.viewModel?.doCall(from: "https://proinstsave.site/api/profile/posts",
+        self.viewModel?.doCall(from: "https://proinstsave.site/api/profile/stories",
                                httpMethod: "GET",
                                urlParam: params,
-                               responseModel: PostsResponseModel.self,
-                               completion: { (result: Result<PostsResponseModel, Error>) in
+                               responseModel: StoryResponseModel.self,
+                               completion: { (result: Result<StoryResponseModel, Error>) in
             switch result {
             case .success(let result):
-                print(result)
+                if !result.data.profileStories.items.isEmpty {
+                    self.addGradientBorder(to: self.image,
+                                           colors: [UIColor(hex: "#FF18D1")!,
+                                                    UIColor(hex: "#FF2323")!,
+                                                    UIColor(hex: "#FFDA22")!,],
+                                           borderWidth: 4)
+                    self.seeStory.isUserInteractionEnabled = true
+                    self.stories = result.data.profileStories.items
+                }
 
             case .failure(let error):
                 print(error.localizedDescription)
@@ -155,6 +177,45 @@ extension AddUserViewController {
     private func makeButtonsAction() {
         storiesButton.addTarget(self, action: #selector(handleButtonAction(_:)), for: .touchUpInside)
         publicationButton.addTarget(self, action: #selector(handleButtonAction(_:)), for: .touchUpInside)
+        seeStory.addTarget(self, action: #selector(openHistoryPage), for: .touchUpInside)
+    }
+
+    @objc func openHistoryPage() {
+        guard let navigationController = self.navigationController else { return }
+        guard let userInfo = self.viewModel?.user else { return }
+        guard let stories = self.stories else { return }
+
+        let model = HistoryNavigationModel(user: userInfo,
+                                           stories: stories)
+
+        AddUserRouter.showHistoryViewController(in: navigationController, navigationModel: model)
+    }
+
+    private func addGradientBorder(to imageView: UIImageView, colors: [UIColor], borderWidth: CGFloat) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = colors.map { $0.cgColor }
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+
+        if let superview = imageView.superview {
+            let imageViewFrameInSuperview = superview.convert(imageView.frame, to: superview)
+            gradientLayer.frame = imageViewFrameInSuperview.insetBy(dx: -borderWidth, dy: -borderWidth)
+        }
+
+        gradientLayer.cornerRadius = imageView.layer.cornerRadius + borderWidth
+
+        let maskLayer = CAShapeLayer()
+        let path = UIBezierPath(roundedRect: gradientLayer.bounds, cornerRadius: gradientLayer.cornerRadius)
+        let innerPath = UIBezierPath(roundedRect: gradientLayer.bounds.insetBy(dx: borderWidth, dy: borderWidth),
+                                     cornerRadius: imageView.layer.cornerRadius)
+        path.append(innerPath)
+        maskLayer.path = path.cgPath
+        maskLayer.fillRule = .evenOdd
+        gradientLayer.mask = maskLayer
+
+        if let superview = imageView.superview {
+            superview.layer.insertSublayer(gradientLayer, below: imageView.layer)
+        }
     }
 
     @IBAction func handleButtonAction(_ sender: UIButton) {

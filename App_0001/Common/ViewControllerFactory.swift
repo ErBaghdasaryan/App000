@@ -59,6 +59,14 @@ final class ViewControllerFactory {
         return viewController
     }
 
+    //MARK: History
+    static func makeHistoryViewController(navigationModel: HistoryNavigationModel) -> HistoryViewController {
+        let assembler = Assembler(commonAssemblies + [HistoryAssembly()])
+        let viewController = HistoryViewController()
+        viewController.viewModel = assembler.resolver.resolve(IHistoryViewModel.self, argument: navigationModel)
+        return viewController
+    }
+
     //MARK: Tracking
     static func makeTrackingViewController() -> TrackingVIewController {
         let assembler = Assembler(commonAssemblies + [TrackingAssembly()])
@@ -72,6 +80,12 @@ final class ViewControllerFactory {
         let assembler = Assembler(commonAssemblies + [SettingsAssembly()])
         let viewController = SettingsViewController()
         viewController.viewModel = assembler.resolver.resolve(ISettingsViewModel.self)
+        return viewController
+    }
+
+    //MARK: PrivacyPolicy
+    static func makeUsageViewController() -> UsageViewController {
+        let viewController = UsageViewController()
         return viewController
     }
 }

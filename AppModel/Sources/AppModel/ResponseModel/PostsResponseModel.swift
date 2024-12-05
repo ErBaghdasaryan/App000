@@ -2,7 +2,7 @@
 //  PostsResponseModel.swift
 //
 //
-//  Created by Er Baghdasaryan on 03.12.24.
+//  Created by Er Baghdasaryan on 04.12.24.
 //
 
 import Foundation
@@ -24,11 +24,11 @@ public  struct ProfilePosts: Codable {
     public let count: Int
     public let hasMore: Bool
     public let paginationToken: String
-    public let items: [Item]
+    public let items: [PostItem]
 }
 
 // MARK: - Item
-public struct Item: Codable {
+public struct PostItem: Codable {
     let id, mediaType: String
     let productType: ProductType
     let isPinned: Bool
