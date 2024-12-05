@@ -94,6 +94,15 @@ extension TrackingVIewController{
         
     }
 
+    private func editUser(for index: Int) {
+        guard let navigationController = self.navigationController else { return }
+        self.viewModel?.loadData()
+        let model = self.viewModel?.users[index]
+
+        TrackingRouter.showUserDetailsViewController(in: navigationController,
+                                             navigationModel: .init(activateSuccessSubject: self.viewModel!.activateSuccessSubject, model: model!))
+    }
+
     private func deleteUser(by index: Int) {
         let deletedUderId = self.viewModel?.users[index].id
 
@@ -148,7 +157,7 @@ extension TrackingVIewController:  UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.editUser(for: indexPath.row)
+        self.editUser(for: indexPath.row)
     }
 }
 

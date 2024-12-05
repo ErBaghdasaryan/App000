@@ -67,11 +67,27 @@ final class ViewControllerFactory {
         return viewController
     }
 
+    //MARK: Publication
+    static func makePublicationViewController(navigationModel: PublicationNavigationModel) -> PublicationViewController {
+        let assembler = Assembler(commonAssemblies + [PublicationAssembly()])
+        let viewController = PublicationViewController()
+        viewController.viewModel = assembler.resolver.resolve(IPublicationViewModel.self, argument: navigationModel)
+        return viewController
+    }
+
     //MARK: Tracking
     static func makeTrackingViewController() -> TrackingVIewController {
         let assembler = Assembler(commonAssemblies + [TrackingAssembly()])
         let viewController = TrackingVIewController()
         viewController.viewModel = assembler.resolver.resolve(ITrackingViewModel.self)
+        return viewController
+    }
+
+    //MARK: UserDetails
+    static func makeUserDetailsViewController(navigationModel: UserNavigationModel) -> UserDetailsViewController {
+        let assembler = Assembler(commonAssemblies + [UserDetailsAssembly()])
+        let viewController = UserDetailsViewController()
+        viewController.viewModel = assembler.resolver.resolve(IUserDetailsViewModel.self, argument: navigationModel)
         return viewController
     }
 

@@ -8,6 +8,7 @@
 import UIKit
 import AppViewModel
 import SnapKit
+import StoreKit
 
 class OnboardingViewController: BaseViewController, UICollectionViewDelegate {
 
@@ -259,6 +260,7 @@ extension OnboardingViewController {
 
             self.header.numberOfLines = 2
             self.descriptionLabel.numberOfLines = 1
+            self.rate()
         default:
             pageControl.setPage(0)
             collectionView.snp.remakeConstraints { view in
@@ -311,6 +313,25 @@ extension OnboardingViewController {
         let visibleItems = collectionView.indexPathsForVisibleItems.sorted()
         if let visibleItem = visibleItems.first {
             currentIndex = visibleItem.item
+        }
+    }
+
+    private func rate() {
+        if #available(iOS 14.0, *) {
+            SKStoreReviewController.requestReview()
+        } else {
+            let alertController = UIAlertController(
+                title: "Enjoying the app?",
+                message: "Please consider leaving us a review in the App Store!",
+                preferredStyle: .alert
+            )
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: "Go to App Store", style: .default) { _ in
+                if let appStoreURL = URL(string: "https://apps.apple.com/us/app/id6738990497") {
+                    UIApplication.shared.open(appStoreURL, options: [:], completionHandler: nil)
+                }
+            })
+            present(alertController, animated: true, completion: nil)
         }
     }
 }

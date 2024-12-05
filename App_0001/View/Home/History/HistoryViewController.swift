@@ -7,6 +7,7 @@
 
 import UIKit
 import AppViewModel
+import AppModel
 import SnapKit
 import SDWebImage
 import AVFoundation
@@ -31,6 +32,7 @@ class HistoryViewController: BaseViewController, UICollectionViewDelegate {
     private var currentPlayer: AVPlayer?
 
     private let addToArchive = UIButton(type: .system)
+    private var currentStory: StoryItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,8 @@ class HistoryViewController: BaseViewController, UICollectionViewDelegate {
         guard let user = self.viewModel?.user else { return }
         self.userImage.image = user.avatar
         self.nameLabel.text = user.name
+
+        updateCurrentIndex()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -121,6 +125,7 @@ class HistoryViewController: BaseViewController, UICollectionViewDelegate {
                                                borderWidth: 0.0,
                                                indicatorBorderColor: .orange,
                                                indicatorBorderWidth: 0.0)
+        currentStory = self.viewModel?.stories[0]
     }
 
     func sizeForItem() -> CGSize {
@@ -196,6 +201,13 @@ extension HistoryViewController {
     
     private func makeButtonsAction() {
         closeButton.addTarget(self, action: #selector(closeStories), for: .touchUpInside)
+        addToArchive.addTarget(self, action: #selector(addStoryToArchive), for: .touchUpInside)
+    }
+
+    @objc func addStoryToArchive() {
+        guard let navigationController = self.navigationController else { return }
+
+        AddUserRouter.popViewController(in: navigationController)
     }
 
     @objc func closeStories() {
@@ -238,6 +250,7 @@ extension HistoryViewController {
             collectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
             currentIndex = nextIndex
             self.pageControl.setPage(nextIndex)
+            handleCurrentItemUpdate(index: nextIndex)
         } else {
             autoScrollTimer?.invalidate()
             handleEndOfStories()
@@ -271,10 +284,21 @@ extension HistoryViewController {
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        updateCurrentIndex()
+    }
+
+    private func updateCurrentIndex() {
         let visibleItems = collectionView.indexPathsForVisibleItems.sorted()
         if let visibleItem = visibleItems.first {
             currentIndex = visibleItem.item
+            handleCurrentItemUpdate(index: currentIndex)
         }
+    }
+
+    private func handleCurrentItemUpdate(index: Int) {
+        guard let viewModel = viewModel, index < viewModel.stories.count else { return }
+        let currentItem = viewModel.stories[index]
+        self.currentStory = currentItem
     }
 }
 

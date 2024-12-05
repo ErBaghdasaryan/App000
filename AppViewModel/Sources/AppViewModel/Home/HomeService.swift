@@ -14,6 +14,12 @@ public protocol IHomeService {
     func getUsers() throws -> [UserModel]
     func deleteUser(byID id: Int) throws
     func editUser(_ user: UserModel) throws
+    func addStoryArchive(_ model: StoryArchive) throws -> StoryArchive
+    func deleteStoryArchive(by id: Int) throws
+    func getStoryArchives(forUserID userID: String) throws -> [StoryArchive]
+    func addPublicationArchive(_ model: PublicationArchive) throws -> PublicationArchive
+    func deletePublicationArchive(by id: Int) throws
+    func getPublicationArchives(forUserID userID: String) throws -> [PublicationArchive]
 }
 
 public class HomeService: IHomeService {
@@ -163,5 +169,123 @@ public class HomeService: IHomeService {
             requestedURLColumn <- user.requestedURL,
             isSavedColumn <- user.isSaved
         ))
+    }
+
+    public func addStoryArchive(_ model: StoryArchive) throws -> StoryArchive {
+        let db = try Connection("\(path)/db.sqlite3")
+        let storyArchives = Table("StoryArchives")
+        let idColumn = Expression<Int>("id")
+        let userIdColumn = Expression<String>("userId")
+        let urlColumn = Expression<String>("url")
+        let videoDownloadUrlColumn = Expression<String?>("url")
+        let thumbnailColumn = Expression<String?>("thumbnail")
+
+        try db.run(storyArchives.create(ifNotExists: true) { t in
+            t.column(idColumn, primaryKey: .autoincrement)
+            t.column(userIdColumn)
+            t.column(urlColumn)
+            t.column(videoDownloadUrlColumn)
+            t.column(thumbnailColumn)
+        })
+
+        let rowId = try db.run(storyArchives.insert(
+            userIdColumn <- model.userId,
+            urlColumn <- model.url,
+            videoDownloadUrlColumn <- model.videoDownloadUrl,
+            thumbnailColumn <- model.thumbnail
+        ))
+
+        return StoryArchive(id: Int(rowId),
+                            userId: model.userId,
+                            url: model.url,
+                            videoDownloadUrl: model.videoDownloadUrl,
+                            thumbnail: model.thumbnail)
+    }
+
+    public func getStoryArchives(forUserID userID: String) throws -> [StoryArchive] {
+        let db = try Connection("\(path)/db.sqlite3")
+        let storyArchives = Table("StoryArchives")
+        let idColumn = Expression<Int>("id")
+        let userIdColumn = Expression<String>("userId")
+        let urlColumn = Expression<String>("url")
+        let videoDownloadUrlColumn = Expression<String?>("url")
+        let thumbnailColumn = Expression<String>("thumbnail")
+
+        var result: [StoryArchive] = []
+
+        for storyArchive in try db.prepare(storyArchives.filter(userIdColumn == userID)) {
+
+            var fetchedStoryArchive: StoryArchive
+            fetchedStoryArchive = StoryArchive(id: storyArchive[idColumn],
+                                               userId: storyArchive[userIdColumn],
+                                               url: storyArchive[urlColumn],
+                                               videoDownloadUrl: storyArchive[videoDownloadUrlColumn],
+                                               thumbnail: storyArchive[thumbnailColumn])
+            result.append(fetchedStoryArchive)
+        }
+
+        return result
+    }
+
+    public func deleteStoryArchive(by id: Int) throws {
+        let db = try Connection("\(path)/db.sqlite3")
+        let storyArchives = Table("StoryArchives")
+        let idColumn = Expression<Int>("id")
+
+        let storyArchiveToDelete = storyArchives.filter(idColumn == id)
+        try db.run(storyArchiveToDelete.delete())
+    }
+
+    public func addPublicationArchive(_ model: PublicationArchive) throws -> PublicationArchive {
+        let db = try Connection("\(path)/db.sqlite3")
+        let publicationArchives = Table("PublicationArchives")
+        let idColumn = Expression<Int>("id")
+        let userIdColumn = Expression<String>("userId")
+        let urlColumn = Expression<String>("url")
+
+        try db.run(publicationArchives.create(ifNotExists: true) { t in
+            t.column(idColumn, primaryKey: .autoincrement)
+            t.column(userIdColumn)
+            t.column(urlColumn)
+        })
+
+        let rowId = try db.run(publicationArchives.insert(
+            userIdColumn <- model.userId,
+            urlColumn <- model.url
+        ))
+
+        return PublicationArchive(id: Int(rowId),
+                                  userId: model.userId,
+                                  url: model.url)
+    }
+
+    public func getPublicationArchives(forUserID userID: String) throws -> [PublicationArchive] {
+        let db = try Connection("\(path)/db.sqlite3")
+        let publicationArchives = Table("PublicationArchives")
+        let idColumn = Expression<Int>("id")
+        let userIdColumn = Expression<String>("userId")
+        let urlColumn = Expression<String>("url")
+
+        var result: [PublicationArchive] = []
+
+        for publicationArchive in try db.prepare(publicationArchives.filter(userIdColumn == userID)) {
+
+            var fetchedPublicationArchive: PublicationArchive
+            fetchedPublicationArchive = PublicationArchive(id: publicationArchive[idColumn],
+                                               userId: publicationArchive[userIdColumn],
+                                               url: publicationArchive[urlColumn])
+            result.append(fetchedPublicationArchive)
+        }
+
+        return result
+    }
+
+    public func deletePublicationArchive(by id: Int) throws {
+        let db = try Connection("\(path)/db.sqlite3")
+        let publicationArchives = Table("PublicationArchives")
+        let idColumn = Expression<Int>("id")
+
+        let publicationArchiveToDelete = publicationArchives.filter(idColumn == id)
+        try db.run(publicationArchiveToDelete.delete())
     }
 }

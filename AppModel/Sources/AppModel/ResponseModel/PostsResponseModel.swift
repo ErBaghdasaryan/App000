@@ -23,40 +23,28 @@ public struct Posts: Codable {
 public  struct ProfilePosts: Codable {
     public let count: Int
     public let hasMore: Bool
-    public let paginationToken: String
+    public let paginationToken: String?
     public let items: [PostItem]
 }
 
 // MARK: - Item
 public struct PostItem: Codable {
-    let id, mediaType: String
-    let productType: ProductType
-    let isPinned: Bool
-    let carousel: [Carousel]
-    let thumbnail, imageDownloadURL: String
-    let videoDownloadURL: String?
-    let requestedURL: String
-
-    enum CodingKeys: String, CodingKey {
-        case id, mediaType, productType, isPinned, carousel, thumbnail
-        case imageDownloadURL = "imageDownloadUrl"
-        case videoDownloadURL = "videoDownloadUrl"
-        case requestedURL = "requestedUrl"
-    }
+    public let id, mediaType: String
+    public let productType: ProductType
+    public let isPinned: Bool
+    public let carousel: [Carousel]
+    public let thumbnail, imageDownloadUrl: String
+    public let videoDownloadUrl: String?
+    public let requestedUrl: String
 }
 
 // MARK: - Carousel
-struct Carousel: Codable {
-    let videoDownloadURL: JSONNull?
-    let imageDownloadURL: String
-
-    enum CodingKeys: String, CodingKey {
-        case videoDownloadURL = "videoDownloadUrl"
-        case imageDownloadURL = "imageDownloadUrl"
-    }
+public struct Carousel: Codable {
+    public let videoDownloadUrl: JSONNull?
+    public let imageDownloadUrl: String
 }
 
-enum ProductType: String, Codable {
+public enum ProductType: String, Codable {
     case carouselContainer = "carousel_container"
     case feed = "feed"
     case igtv = "igtv"

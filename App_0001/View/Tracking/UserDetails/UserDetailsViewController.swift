@@ -1,8 +1,8 @@
 //
-//  AddUserViewController.swift
+//  UserDetailsViewController.swift
 //  App_0001
 //
-//  Created by Er Baghdasaryan on 02.12.24.
+//  Created by Er Baghdasaryan on 05.12.24.
 //
 
 import UIKit
@@ -11,7 +11,7 @@ import AppModel
 import SnapKit
 import SDWebImage
 
-class AddUserViewController: BaseViewController {
+class UserDetailsViewController: BaseViewController {
 
     var viewModel: ViewModel?
     private let image = UIImageView()
@@ -98,6 +98,8 @@ class AddUserViewController: BaseViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
 
+        self.navigationController?.navigationBar.tintColor = .white
+
         self.view.addSubview(image)
         self.view.addSubview(seeStory)
         self.view.addSubview(name)
@@ -107,7 +109,6 @@ class AddUserViewController: BaseViewController {
         self.view.addSubview(buttonsStack)
         self.view.addSubview(collectionView)
         setupConstraints()
-        setupNavigationItems()
     }
 
     private func setupConstraints() {
@@ -228,7 +229,7 @@ class AddUserViewController: BaseViewController {
 }
 
 //MARK: Make buttons actions
-extension AddUserViewController {
+extension UserDetailsViewController {
 
     private func makeButtonsAction() {
         storiesButton.addTarget(self, action: #selector(handleButtonAction(_:)), for: .touchUpInside)
@@ -244,7 +245,7 @@ extension AddUserViewController {
         let model = HistoryNavigationModel(user: userInfo,
                                            stories: stories)
 
-        AddUserRouter.showHistoryViewController(in: navigationController, navigationModel: model)
+        UserDetailsRouter.showHistoryViewController(in: navigationController, navigationModel: model)
     }
 
     private func openSpecificStory(from story: StoryItem) {
@@ -256,7 +257,7 @@ extension AddUserViewController {
         let model = HistoryNavigationModel(user: userInfo,
                                            stories: stories)
 
-        AddUserRouter.showHistoryViewController(in: navigationController, navigationModel: model)
+        UserDetailsRouter.showHistoryViewController(in: navigationController, navigationModel: model)
     }
 
     private func openPublication(from: PostItem) {
@@ -265,7 +266,7 @@ extension AddUserViewController {
 
         let model = PublicationNavigationModel(user: userInfo, posts: from)
 
-        AddUserRouter.showPublicationViewController(in: navigationController, navigationModel: model)
+        UserDetailsRouter.showPublicationViewController(in: navigationController, navigationModel: model)
     }
 
     private func addGradientBorder(to imageView: UIImageView, colors: [UIColor], borderWidth: CGFloat) {
@@ -315,13 +316,8 @@ extension AddUserViewController {
     private func setupNavigationItems() {
 
         let addButton = UIButton(type: .system)
-        addButton.setTitle("Add", for: .normal)
-        addButton.setTitleColor(.white, for: .normal)
-        addButton.backgroundColor = UIColor.white.withAlphaComponent(0.05)
-        addButton.layer.cornerRadius = 17
-        addButton.layer.masksToBounds = true
-        addButton.frame = CGRect(x: 0, y: 0, width: 58, height: 34)
-        addButton.addTarget(self, action: #selector(addUser), for: .touchUpInside)
+        addButton.setImage(.init(named: "archiveButton"), for: .normal)
+        addButton.addTarget(self, action: #selector(openArchive), for: .touchUpInside)
         let barButton = UIBarButtonItem(customView: addButton)
         navigationItem.rightBarButtonItem = barButton
         self.navigationController?.navigationBar.tintColor = .white
@@ -348,32 +344,32 @@ extension AddUserViewController {
         }
     }
 
-    @objc private func addUser() {
-        guard let navigationController = self.navigationController else { return }
-        guard let model = self.viewModel?.user else { return }
+    @objc private func openArchive() {
+//        guard let navigationController = self.navigationController else { return }
+//        guard let model = self.viewModel?.user else { return }
 
-        self.viewModel?.editUser(model: .init(id: model.id,
-                                              userID: model.userID,
-                                              name: model.name,
-                                              username: model.username,
-                                              avatar: model.avatar,
-                                              description: model.description,
-                                              totalPublications: model.totalPublications,
-                                              totalSubscribers: model.totalSubscribers,
-                                              totalSubscriptions: model.totalSubscriptions,
-                                              requestedURL: model.requestedURL,
-                                              isSaved: true))
-
-        HomeRouter.popViewController(in: navigationController)
+//        self.viewModel?.editUser(model: .init(id: model.id,
+//                                              userID: model.userID,
+//                                              name: model.name,
+//                                              username: model.username,
+//                                              avatar: model.avatar,
+//                                              description: model.description,
+//                                              totalPublications: model.totalPublications,
+//                                              totalSubscribers: model.totalSubscribers,
+//                                              totalSubscriptions: model.totalSubscriptions,
+//                                              requestedURL: model.requestedURL,
+//                                              isSaved: true))
+//
+//        HomeRouter.popViewController(in: navigationController)
     }
 
 }
 
-extension AddUserViewController: IViewModelableController {
-    typealias ViewModel = IAddUserViewModel
+extension UserDetailsViewController: IViewModelableController {
+    typealias ViewModel = IUserDetailsViewModel
 }
 
-extension AddUserViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension UserDetailsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isStory {
             if self.stories.count == 0 {
@@ -510,20 +506,20 @@ extension AddUserViewController: UICollectionViewDataSource, UICollectionViewDel
 //MARK: Preview
 import SwiftUI
 
-struct AddUserViewControllerProvider: PreviewProvider {
+struct UserDetailsViewControllerProvider: PreviewProvider {
 
     static var previews: some View {
         ContainerView().edgesIgnoringSafeArea(.all)
     }
 
     struct ContainerView: UIViewControllerRepresentable {
-        let addUserViewController = AddUserViewController()
+        let userDetailsViewController = UserDetailsViewController()
         
-        func makeUIViewController(context: UIViewControllerRepresentableContext<AddUserViewControllerProvider.ContainerView>) -> AddUserViewController {
-            return addUserViewController
+        func makeUIViewController(context: UIViewControllerRepresentableContext<UserDetailsViewControllerProvider.ContainerView>) -> UserDetailsViewController {
+            return userDetailsViewController
         }
 
-        func updateUIViewController(_ uiViewController: AddUserViewControllerProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<AddUserViewControllerProvider.ContainerView>) {
+        func updateUIViewController(_ uiViewController: UserDetailsViewControllerProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<UserDetailsViewControllerProvider.ContainerView>) {
         }
     }
 }

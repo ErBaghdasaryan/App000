@@ -76,6 +76,14 @@
 		CC93DB1A2D0087C0004C2A08 /* HistoryAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB192D0087C0004C2A08 /* HistoryAssembly.swift */; };
 		CC93DB1C2D0087CC004C2A08 /* HistoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB1B2D0087CC004C2A08 /* HistoryRouter.swift */; };
 		CC93DB1F2D008D27004C2A08 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB1E2D008D27004C2A08 /* StoryCell.swift */; };
+		CC93DB222D0132FA004C2A08 /* StoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB212D0132FA004C2A08 /* StoryCollectionViewCell.swift */; };
+		CC93DB242D014E13004C2A08 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB232D014E13004C2A08 /* EmptyCollectionViewCell.swift */; };
+		CC93DB272D0152C4004C2A08 /* PublicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB262D0152C4004C2A08 /* PublicationViewController.swift */; };
+		CC93DB292D0152CE004C2A08 /* PublicationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB282D0152CE004C2A08 /* PublicationAssembly.swift */; };
+		CC93DB2C2D015713004C2A08 /* PublicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB2B2D015713004C2A08 /* PublicationView.swift */; };
+		CC93DB2F2D0167EE004C2A08 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB2E2D0167EE004C2A08 /* UserDetailsViewController.swift */; };
+		CC93DB312D0167FB004C2A08 /* UserDetailsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB302D0167FB004C2A08 /* UserDetailsAssembly.swift */; };
+		CC93DB332D016804004C2A08 /* UserDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC93DB322D016804004C2A08 /* UserDetailsRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +152,14 @@
 		CC93DB192D0087C0004C2A08 /* HistoryAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryAssembly.swift; sourceTree = "<group>"; };
 		CC93DB1B2D0087CC004C2A08 /* HistoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRouter.swift; sourceTree = "<group>"; };
 		CC93DB1E2D008D27004C2A08 /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
+		CC93DB212D0132FA004C2A08 /* StoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC93DB232D014E13004C2A08 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC93DB262D0152C4004C2A08 /* PublicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationViewController.swift; sourceTree = "<group>"; };
+		CC93DB282D0152CE004C2A08 /* PublicationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationAssembly.swift; sourceTree = "<group>"; };
+		CC93DB2B2D015713004C2A08 /* PublicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationView.swift; sourceTree = "<group>"; };
+		CC93DB2E2D0167EE004C2A08 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		CC93DB302D0167FB004C2A08 /* UserDetailsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsAssembly.swift; sourceTree = "<group>"; };
+		CC93DB322D016804004C2A08 /* UserDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +284,7 @@
 		CC62C8852CF5EC9F0051063C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CC93DB2A2D0156F8004C2A08 /* PublicationView */,
 				CC62C9052CFE56020051063C /* PublicationsButton */,
 				CC62C9022CFE54570051063C /* DescriptionView */,
 				CC62C8FF2CFE52350051063C /* StatView */,
@@ -338,6 +355,7 @@
 		CC62C8C12CF61BBC0051063C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CC93DB252D0152B3004C2A08 /* Publication */,
 				CC93DB162D0087A9004C2A08 /* History */,
 				CC62C8F42CFE0A800051063C /* AddUser */,
 				CC62C8F12CFDE8A20051063C /* Cell */,
@@ -351,6 +369,7 @@
 		CC62C8C82CF61BD90051063C /* Tracking */ = {
 			isa = PBXGroup;
 			children = (
+				CC93DB2D2D0167E0004C2A08 /* UserDetails */,
 				CC62C8FC2CFE47910051063C /* Cell */,
 				CC62C8C92CF61BE90051063C /* TrackingVIewController.swift */,
 				CC62C8CB2CF61BF00051063C /* TrackingAssembly.swift */,
@@ -418,6 +437,7 @@
 		CC62C8F42CFE0A800051063C /* AddUser */ = {
 			isa = PBXGroup;
 			children = (
+				CC93DB202D0132EC004C2A08 /* Cell */,
 				CC62C8F62CFE0A910051063C /* AddUserViewController.swift */,
 				CC62C8F82CFE0A980051063C /* AddUserAssembly.swift */,
 				CC62C8FA2CFE0AA00051063C /* AddUserRouter.swift */,
@@ -482,6 +502,42 @@
 				CC93DB1E2D008D27004C2A08 /* StoryCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		CC93DB202D0132EC004C2A08 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CC93DB212D0132FA004C2A08 /* StoryCollectionViewCell.swift */,
+				CC93DB232D014E13004C2A08 /* EmptyCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		CC93DB252D0152B3004C2A08 /* Publication */ = {
+			isa = PBXGroup;
+			children = (
+				CC93DB262D0152C4004C2A08 /* PublicationViewController.swift */,
+				CC93DB282D0152CE004C2A08 /* PublicationAssembly.swift */,
+			);
+			path = Publication;
+			sourceTree = "<group>";
+		};
+		CC93DB2A2D0156F8004C2A08 /* PublicationView */ = {
+			isa = PBXGroup;
+			children = (
+				CC93DB2B2D015713004C2A08 /* PublicationView.swift */,
+			);
+			path = PublicationView;
+			sourceTree = "<group>";
+		};
+		CC93DB2D2D0167E0004C2A08 /* UserDetails */ = {
+			isa = PBXGroup;
+			children = (
+				CC93DB2E2D0167EE004C2A08 /* UserDetailsViewController.swift */,
+				CC93DB302D0167FB004C2A08 /* UserDetailsAssembly.swift */,
+				CC93DB322D016804004C2A08 /* UserDetailsRouter.swift */,
+			);
+			path = UserDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -579,6 +635,7 @@
 				CC62C8DD2CF7448B0051063C /* ColorUtils.swift in Sources */,
 				CC62C89A2CF5ED940051063C /* CollectionVIew.swift in Sources */,
 				CC62C8F72CFE0A910051063C /* AddUserViewController.swift in Sources */,
+				CC93DB292D0152CE004C2A08 /* PublicationAssembly.swift in Sources */,
 				CC62C8D52CF61C100051063C /* SettingsAssembly.swift in Sources */,
 				CC62C8F32CFDE8AF0051063C /* RecentTableViewCell.swift in Sources */,
 				CC93DB152D008373004C2A08 /* Int.swift in Sources */,
@@ -588,6 +645,7 @@
 				CC62C8A02CF5EDDB0051063C /* UILabel.swift in Sources */,
 				CC62C8CC2CF61BF00051063C /* TrackingAssembly.swift in Sources */,
 				CC62C8522CF5E8B60051063C /* AppDelegate.swift in Sources */,
+				CC93DB272D0152C4004C2A08 /* PublicationViewController.swift in Sources */,
 				CC62C8CE2CF61BF70051063C /* TrackingRouter.swift in Sources */,
 				CC62C8DB2CF744850051063C /* AdvancedPageControl.swift in Sources */,
 				CC62C88D2CF5ECC30051063C /* BaseRouter.swift in Sources */,
@@ -615,15 +673,21 @@
 				CC62C8D82CF623520051063C /* SettingsView.swift in Sources */,
 				CC93DB1C2D0087CC004C2A08 /* HistoryRouter.swift in Sources */,
 				CC62C8C02CF61BB90051063C /* TabBarViewController.swift in Sources */,
+				CC93DB222D0132FA004C2A08 /* StoryCollectionViewCell.swift in Sources */,
 				CC62C89C2CF5ED9A0051063C /* UIColor.swift in Sources */,
 				CC62C8CA2CF61BE90051063C /* TrackingVIewController.swift in Sources */,
 				CC62C8C72CF61BD60051063C /* HomeRouter.swift in Sources */,
+				CC93DB242D014E13004C2A08 /* EmptyCollectionViewCell.swift in Sources */,
 				CC93DB1A2D0087C0004C2A08 /* HistoryAssembly.swift in Sources */,
 				CC62C8D12CF61C030051063C /* SettingsViewController.swift in Sources */,
 				CC62C8932CF5ECE60051063C /* ViewControllerFactory.swift in Sources */,
+				CC93DB332D016804004C2A08 /* UserDetailsRouter.swift in Sources */,
 				CC93DB182D0087B7004C2A08 /* HistoryViewController.swift in Sources */,
+				CC93DB312D0167FB004C2A08 /* UserDetailsAssembly.swift in Sources */,
 				CC62C8B02CF5F1330051063C /* UntilOnboardingViewController.swift in Sources */,
+				CC93DB2F2D0167EE004C2A08 /* UserDetailsViewController.swift in Sources */,
 				CC62C8B42CF5F14B0051063C /* UntilOnboardingRouter.swift in Sources */,
+				CC93DB2C2D015713004C2A08 /* PublicationView.swift in Sources */,
 				CC62C8E42CF747340051063C /* PaymentAssembly.swift in Sources */,
 				CC62C8A42CF5EDE50051063C /* String.swift in Sources */,
 				CC62C9012CFE52460051063C /* StatView.swift in Sources */,
@@ -762,7 +826,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5PTH9U4CB9;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App_0001/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = InstaViewer;
@@ -776,7 +840,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.er.App-0001";
+				PRODUCT_BUNDLE_IDENTIFIER = "bundle-id";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -795,7 +859,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5PTH9U4CB9;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App_0001/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = InstaViewer;
@@ -809,7 +873,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.er.App-0001";
+				PRODUCT_BUNDLE_IDENTIFIER = "bundle-id";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

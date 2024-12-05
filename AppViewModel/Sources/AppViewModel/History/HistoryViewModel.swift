@@ -11,6 +11,7 @@ import AppModel
 public protocol IHistoryViewModel {
     var user: UserModel { get set }
     var stories: [StoryItem] { get set }
+    func addStoryArchive(model: StoryArchive)
 }
 
 public class HistoryViewModel: IHistoryViewModel {
@@ -23,5 +24,13 @@ public class HistoryViewModel: IHistoryViewModel {
         self.homeService = homeService
         self.user = navigationModel.user
         self.stories = navigationModel.stories
+    }
+
+    public func addStoryArchive(model: StoryArchive) {
+        do {
+            _ = try self.homeService.addStoryArchive(model)
+        } catch {
+            print(error)
+        }
     }
 }

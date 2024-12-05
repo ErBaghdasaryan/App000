@@ -1,8 +1,8 @@
 //
-//  AddUserRouter.swift
+//  UserDetailsRouter.swift
 //  App_0001
 //
-//  Created by Er Baghdasaryan on 02.12.24.
+//  Created by Er Baghdasaryan on 05.12.24.
 //
 
 import Foundation
@@ -10,7 +10,7 @@ import UIKit
 import AppViewModel
 import AppModel
 
-final class AddUserRouter: BaseRouter {
+final class UserDetailsRouter: BaseRouter {
 
     static func showHistoryViewController(in navigationController: UINavigationController, navigationModel: HistoryNavigationModel) {
         let viewController = ViewControllerFactory.makeHistoryViewController(navigationModel: navigationModel)

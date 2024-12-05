@@ -186,7 +186,8 @@ extension PaymentViewController {
     }
 
     @objc func continueButtonTaped() {
-       
+        guard let navigationController = self.navigationController else { return }
+        OnboardingRouter.showTabBarViewController(in: navigationController)
     }
 }
 
