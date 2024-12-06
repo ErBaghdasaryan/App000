@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC5516962D033D2B006F267D /* ApphudSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CC5516952D033D2B006F267D /* ApphudSDK */; };
 		CC62C8522CF5E8B60051063C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8512CF5E8B60051063C /* AppDelegate.swift */; };
 		CC62C8542CF5E8B60051063C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8532CF5E8B60051063C /* SceneDelegate.swift */; };
 		CC62C85B2CF5E8B70051063C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC62C85A2CF5E8B70051063C /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC55169A2D034275006F267D /* App001.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = App001.storekit; sourceTree = "<group>"; };
 		CC62C84E2CF5E8B60051063C /* App_0001.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App_0001.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC62C8512CF5E8B60051063C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC62C8532CF5E8B60051063C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC5516962D033D2B006F267D /* ApphudSDK in Frameworks */,
 				CC62C87B2CF5EC600051063C /* AppModel in Frameworks */,
 				CC62C86C2CF5E94F0051063C /* SQLite in Frameworks */,
 				CC62C8672CF5E9440051063C /* SnapKit in Frameworks */,
@@ -184,6 +187,7 @@
 		CC62C8452CF5E8B60051063C = {
 			isa = PBXGroup;
 			children = (
+				CC55169A2D034275006F267D /* App001.storekit */,
 				CC62C8782CF5E9B10051063C /* AppModel */,
 				CC62C8772CF5E9A00051063C /* AppViewModel */,
 				CC62C8502CF5E8B60051063C /* App_0001 */,
@@ -565,6 +569,7 @@
 				CC62C87C2CF5EC600051063C /* AppViewModel */,
 				CC62C8EB2CFDDFCF0051063C /* SDWebImage */,
 				CC62C8ED2CFDDFCF0051063C /* SDWebImageMapKit */,
+				CC5516952D033D2B006F267D /* ApphudSDK */,
 			);
 			productName = App_0001;
 			productReference = CC62C84E2CF5E8B60051063C /* App_0001.app */;
@@ -600,6 +605,7 @@
 				CC62C86D2CF5E95C0051063C /* XCRemoteSwiftPackageReference "Swinject" */,
 				CC62C8722CF5E9690051063C /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
 				CC62C8EA2CFDDFCF0051063C /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				CC5516942D033D2B006F267D /* XCRemoteSwiftPackageReference "ApphudSDK" */,
 			);
 			productRefGroup = CC62C84F2CF5E8B60051063C /* Products */;
 			projectDirPath = "";
@@ -830,6 +836,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App_0001/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = InstaViewer;
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used to deliver personalized ads to you";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -840,7 +847,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "bundle-id";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tatisav.ivgv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -863,6 +870,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App_0001/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = InstaViewer;
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used to deliver personalized ads to you";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -873,7 +881,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "bundle-id";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tatisav.ivgv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -909,6 +917,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CC5516942D033D2B006F267D /* XCRemoteSwiftPackageReference "ApphudSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apphud/ApphudSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.5.7;
+			};
+		};
 		CC62C8652CF5E9440051063C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -952,6 +968,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CC5516952D033D2B006F267D /* ApphudSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC5516942D033D2B006F267D /* XCRemoteSwiftPackageReference "ApphudSDK" */;
+			productName = ApphudSDK;
+		};
 		CC62C8662CF5E9440051063C /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CC62C8652CF5E9440051063C /* XCRemoteSwiftPackageReference "SnapKit" */;

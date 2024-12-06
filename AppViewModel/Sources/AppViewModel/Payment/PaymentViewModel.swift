@@ -6,6 +6,7 @@
 //
 import Foundation
 import AppModel
+import ApphudSDK
 
 public protocol IPaymentViewModel {
 

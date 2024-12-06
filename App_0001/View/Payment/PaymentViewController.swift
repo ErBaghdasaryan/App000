@@ -8,6 +8,7 @@
 import UIKit
 import AppViewModel
 import SnapKit
+import ApphudSDK
 
 final class PaymentViewController: BaseViewController {
 
@@ -27,9 +28,20 @@ final class PaymentViewController: BaseViewController {
     private let monthlyButton = PaymentButton(isYearly: .monthly)
     private var plansStack: UIStackView!
 
+    private var currentProduct: ApphudProduct?
+    public let paywallID = "main"
+    public var productsAppHud: [ApphudProduct] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         makeButtonsAction()
+        self.loadPaywalls()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        
     }
 
     override func setupUI() {
@@ -167,27 +179,104 @@ extension PaymentViewController {
         monthlyButton.addTarget(self, action: #selector(planAction(_:)), for: .touchUpInside)
     }
 
+    private func returnName(product: ApphudProduct) -> String {
+        guard let subsciptionPeriod = product.skProduct?.subscriptionPeriod else { return "" }
+
+        switch subsciptionPeriod.unit {
+        case .year:
+            return "Yearly $49.99"
+        case .week:
+            return "Week"
+        case .day:
+            return "Day"
+        case .month:
+            return "Monthly $6.99"
+        @unknown default:
+            return "Unknown"
+        }
+    }
+
     @objc func planAction(_ sender: UIButton) {
         switch sender {
         case yearlyButton:
             self.yearlyButton.isSelectedState = true
             self.monthlyButton.isSelectedState = false
+            self.currentProduct = self.productsAppHud.first
         case monthlyButton:
             self.yearlyButton.isSelectedState = false
             self.monthlyButton.isSelectedState = true
+            self.currentProduct = self.productsAppHud[1]
         default:
             break
         }
     }
 
     @objc func forFreeButtonTapped() {
-        guard let navigationController = self.navigationController else { return }
-        OnboardingRouter.showTabBarViewController(in: navigationController)
+        if let navigationController = self.navigationController {
+            let viewControllers = navigationController.viewControllers
+
+            if let currentIndex = viewControllers.firstIndex(of: self), currentIndex > 0 {
+                let previousViewController = viewControllers[currentIndex - 1]
+
+                if previousViewController is OnboardingViewController {
+                    UntilOnboardingRouter.showTabBarViewController(in: navigationController)
+                } else {
+                    UntilOnboardingRouter.popViewController(in: navigationController)
+                }
+            }
+        }
     }
 
     @objc func continueButtonTaped() {
-        guard let navigationController = self.navigationController else { return }
-        OnboardingRouter.showTabBarViewController(in: navigationController)
+        if let navigationController = self.navigationController {
+            guard let currentProduct = self.currentProduct else { return }
+
+            startPurchase(product: currentProduct) { result in
+                let viewControllers = navigationController.viewControllers
+
+                if let currentIndex = viewControllers.firstIndex(of: self), currentIndex > 0 {
+                    let previousViewController = viewControllers[currentIndex - 1]
+
+                    if previousViewController is OnboardingViewController {
+                        UntilOnboardingRouter.showTabBarViewController(in: navigationController)
+                    } else {
+                        UntilOnboardingRouter.popViewController(in: navigationController)
+                    }
+                }
+            }
+        }
+
+    }
+
+    @MainActor func startPurchase(product: ApphudProduct, escaping: @escaping(Bool) -> Void) {
+        let selectedProduct = product
+        Apphud.purchase(selectedProduct) { result in
+            if let error = result.error {
+                escaping(false)
+            }
+
+            if let subscription = result.subscription, subscription.isActive() {
+                escaping(true)
+            } else if let purchase = result.nonRenewingPurchase, purchase.isActive() {
+                escaping(true)
+            } else {
+                if Apphud.hasActiveSubscription() {
+                    escaping(true)
+                }
+            }
+        }
+    }
+
+    @MainActor
+    public func loadPaywalls() {
+        Apphud.paywallsDidLoadCallback { paywalls, arg in
+            if let paywall = paywalls.first(where: { $0.identifier == self.paywallID }) {
+                Apphud.paywallShown(paywall)
+
+                let products = paywall.products
+                self.productsAppHud = products
+            }
+        }
     }
 }
 

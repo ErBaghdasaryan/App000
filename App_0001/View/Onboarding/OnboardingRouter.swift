@@ -21,6 +21,7 @@ final class OnboardingRouter: BaseRouter {
         let viewController = ViewControllerFactory.makePaymentViewController()
         viewController.navigationItem.hidesBackButton = true
         navigationController.navigationBar.isHidden = true
+        viewController.tabBarController?.tabBar.isHidden = true
         navigationController.pushViewController(viewController, animated: false)
     }
 }

@@ -23,6 +23,7 @@ final class SettingsRouter: BaseRouter {
         viewController.navigationItem.hidesBackButton = true
         navigationController.navigationBar.isHidden = true
         viewController.hidesBottomBarWhenPushed = true
+        viewController.tabBarController?.tabBar.isHidden = true
         navigationController.pushViewController(viewController, animated: false)
     }
 }

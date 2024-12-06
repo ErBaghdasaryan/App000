@@ -10,6 +10,7 @@ import AppViewModel
 import AppModel
 import SnapKit
 import SDWebImage
+import ApphudSDK
 
 class HomeViewController: BaseViewController, UICollectionViewDelegate {
 
@@ -79,6 +80,7 @@ class HomeViewController: BaseViewController, UICollectionViewDelegate {
 
     override func setupViewModel() {
         super.setupViewModel()
+        self.viewModel?.loadPaywalls()
     }
 
     func setupConstraints() {
@@ -226,60 +228,64 @@ extension HomeViewController: UISearchBarDelegate {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let input = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines), !input.isEmpty else {
-            print("Input is empty")
-            return
-        }
-
-        self.view.endEditing(true)
-
-        self.activityIndicator.startAnimating()
-
-        let url: String
-        if input.contains("https://") {
-            url = input
-        } else {
-            url = "https://www.instagram.com/\(input)"
-        }
-
-        let params = ["url": url,
-                      "token": "0118a92e-50df-48k72-8442-63043f133a61"]
-        self.viewModel?.doCall(from: "https://proinstsave.site/api/profile",
-                               httpMethod: "GET",
-                               urlParam: params,
-                               responseModel: ResponseModel.self,
-                               completion: { (result: Result<ResponseModel, Error>) in
-            switch result {
-            case .success(let success):
-
-                let imageURL = success.data.profile.avatar
-                let user = success.data.profile
-
-                self.fetchImageUsingSDWebImage(from: imageURL) { image in
-                    if let image = image {
-
-                        let userModel = UserModel(userID: user.userID,
-                                                  name: user.name,
-                                                  username: user.username,
-                                                  avatar: image,
-                                                  description: user.description,
-                                                  totalPublications: user.totalPublications,
-                                                  totalSubscribers: user.totalSubscribers,
-                                                  totalSubscriptions: user.totalSubscriptions,
-                                                  requestedURL: user.requestedURL,
-                                                  isSaved: false)
-
-                        self.viewModel?.addUser(user: userModel)
-                        self.openAddUserPage(userModel: userModel)
-                    } else {
-                        print("Failed to fetch image")
-                    }
-                }
-                self.activityIndicator.stopAnimating()
-            case .failure(let failure):
-                self.activityIndicator.stopAnimating()
+        if Apphud.hasActiveSubscription() {
+            guard let input = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines), !input.isEmpty else {
+                print("Input is empty")
+                return
             }
-        })
+            
+            self.view.endEditing(true)
+            
+            self.activityIndicator.startAnimating()
+            
+            let url: String
+            if input.contains("https://") {
+                url = input
+            } else {
+                url = "https://www.instagram.com/\(input)"
+            }
+            
+            let params = ["url": url,
+                          "token": "0118a92e-50df-48k72-8442-63043f133a61"]
+            self.viewModel?.doCall(from: "https://proinstsave.site/api/profile",
+                                   httpMethod: "GET",
+                                   urlParam: params,
+                                   responseModel: ResponseModel.self,
+                                   completion: { (result: Result<ResponseModel, Error>) in
+                switch result {
+                case .success(let success):
+                    
+                    let imageURL = success.data.profile.avatar
+                    let user = success.data.profile
+                    
+                    self.fetchImageUsingSDWebImage(from: imageURL) { image in
+                        if let image = image {
+                            
+                            let userModel = UserModel(userID: user.userID,
+                                                      name: user.name,
+                                                      username: user.username,
+                                                      avatar: image,
+                                                      description: user.description,
+                                                      totalPublications: user.totalPublications,
+                                                      totalSubscribers: user.totalSubscribers,
+                                                      totalSubscriptions: user.totalSubscriptions,
+                                                      requestedURL: user.requestedURL,
+                                                      isSaved: false)
+                            
+                            self.viewModel?.addUser(user: userModel)
+                            self.openAddUserPage(userModel: userModel)
+                        } else {
+                            print("Failed to fetch image")
+                        }
+                    }
+                    self.activityIndicator.stopAnimating()
+                case .failure(let failure):
+                    self.activityIndicator.stopAnimating()
+                }
+            }) } else {
+                guard let navigationController = self.navigationController else { return }
+                HomeRouter.showPaymentViewController(in: navigationController)
+            }
     }
 }
 

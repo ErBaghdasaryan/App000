@@ -40,6 +40,9 @@ class UntilOnboardingViewController: BaseViewController, UICollectionViewDelegat
         progressView.trackTintColor = UIColor(hex: "#1A242D")
         progressView.layer.cornerRadius = 25
 
+        self.logoImage.layer.masksToBounds = true
+        self.logoImage.layer.cornerRadius = 40
+
         setupConstraints()
     }
 
@@ -54,10 +57,10 @@ class UntilOnboardingViewController: BaseViewController, UICollectionViewDelegat
         self.view.addSubview(progressView)
 
         logoImage.snp.makeConstraints { view in
-            view.top.equalToSuperview().offset(328)
+            view.top.equalToSuperview().offset(199)
             view.centerX.equalToSuperview()
-            view.height.equalTo(187)
-            view.width.equalTo(203)
+            view.height.equalTo(162)
+            view.width.equalTo(162)
         }
 
         progressLabel.snp.makeConstraints { view in
