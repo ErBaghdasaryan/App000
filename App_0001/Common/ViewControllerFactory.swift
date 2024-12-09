@@ -104,4 +104,10 @@ final class ViewControllerFactory {
         let viewController = UsageViewController()
         return viewController
     }
+
+    //MARK: Terms
+    static func makeTermsViewController() -> TermsViewController {
+        let viewController = TermsViewController()
+        return viewController
+    }
 }

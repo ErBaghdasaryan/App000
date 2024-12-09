@@ -8,7 +8,6 @@
 import Foundation
 import AppModel
 import Combine
-import ApphudSDK
 
 public protocol IHomeViewModel {
     func loadData()
@@ -22,7 +21,6 @@ public protocol IHomeViewModel {
     )
     func addUser(user: UserModel)
     var activateSuccessSubject: PassthroughSubject<Bool, Never> { get }
-    func loadPaywalls()
 }
 
 public class HomeViewModel: IHomeViewModel {
@@ -30,8 +28,6 @@ public class HomeViewModel: IHomeViewModel {
     private let homeService: IHomeService
     public var activateSuccessSubject = PassthroughSubject<Bool, Never>()
     public var users: [UserModel] = []
-    public let paywallID = "main"
-    public var productsAppHud: [ApphudProduct] = []
 
     public init(homeService: IHomeService) {
         self.homeService = homeService
@@ -42,18 +38,6 @@ public class HomeViewModel: IHomeViewModel {
             users = try self.homeService.getUsers()
         } catch {
             print(error)
-        }
-    }
-
-    @MainActor
-    public func loadPaywalls() {
-        Apphud.paywallsDidLoadCallback { paywalls, arg in
-            if let paywall = paywalls.first(where: { $0.identifier == self.paywallID }) {
-                Apphud.paywallShown(paywall)
-
-                let products = paywall.products
-                self.productsAppHud = products
-            }
         }
     }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC5516962D033D2B006F267D /* ApphudSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CC5516952D033D2B006F267D /* ApphudSDK */; };
+		CC62C6AC2D06DD7E0061FFB5 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C6AB2D06DD7E0061FFB5 /* TermsViewController.swift */; };
 		CC62C8522CF5E8B60051063C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8512CF5E8B60051063C /* AppDelegate.swift */; };
 		CC62C8542CF5E8B60051063C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC62C8532CF5E8B60051063C /* SceneDelegate.swift */; };
 		CC62C85B2CF5E8B70051063C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC62C85A2CF5E8B70051063C /* Assets.xcassets */; };
@@ -89,6 +90,7 @@
 
 /* Begin PBXFileReference section */
 		CC55169A2D034275006F267D /* App001.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = App001.storekit; sourceTree = "<group>"; };
+		CC62C6AB2D06DD7E0061FFB5 /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		CC62C84E2CF5E8B60051063C /* App_0001.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App_0001.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC62C8512CF5E8B60051063C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC62C8532CF5E8B60051063C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				CC93DB122D00807F004C2A08 /* UsageViewController.swift */,
+				CC62C6AB2D06DD7E0061FFB5 /* TermsViewController.swift */,
 			);
 			path = Usage;
 			sourceTree = "<group>";
@@ -699,6 +702,7 @@
 				CC62C9012CFE52460051063C /* StatView.swift in Sources */,
 				CC62C8542CF5E8B60051063C /* SceneDelegate.swift in Sources */,
 				CC62C8E62CF7473A0051063C /* PaymentRouter.swift in Sources */,
+				CC62C6AC2D06DD7E0061FFB5 /* TermsViewController.swift in Sources */,
 				CC62C8872CF5ECB00051063C /* Setupable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

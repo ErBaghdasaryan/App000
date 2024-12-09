@@ -80,7 +80,6 @@ class HomeViewController: BaseViewController, UICollectionViewDelegate {
 
     override func setupViewModel() {
         super.setupViewModel()
-        self.viewModel?.loadPaywalls()
     }
 
     func setupConstraints() {

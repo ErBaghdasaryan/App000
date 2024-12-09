@@ -1,15 +1,15 @@
 //
-//  UsageViewController.swift
+//  TermsViewController.swift
 //  App_0001
 //
-//  Created by Er Baghdasaryan on 04.12.24.
+//  Created by Er Baghdasaryan on 09.12.24.
 //
 
 import UIKit
 import WebKit
 import SnapKit
 
-final class UsageViewController: BaseViewController {
+final class TermsViewController: BaseViewController {
 
     private let webView = WKWebView()
 
@@ -21,7 +21,7 @@ final class UsageViewController: BaseViewController {
         view.backgroundColor = .white
         self.navigationController?.navigationBar.tintColor = .black
         self.webView.backgroundColor = .clear
-        if let url = URL(string: "https://docs.google.com/document/d/1_RU8V-kYn2TrJSRzf_jq6HdBn3rRZny6MIRcP8GkOmM/edit?usp=sharing") {
+        if let url = URL(string: "https://docs.google.com/document/d/1tZU2VqzrxXvRuuktLlhrg1nEZkXacoLH8ccpudQ266o/edit?usp=sharing") {
             webView.load(URLRequest(url: url))
         }
 
@@ -47,20 +47,20 @@ final class UsageViewController: BaseViewController {
 
 import SwiftUI
 
-struct UsageViewControllerProvider: PreviewProvider {
+struct TermsViewControllerProvider: PreviewProvider {
 
     static var previews: some View {
         ContainerView().edgesIgnoringSafeArea(.all)
     }
 
     struct ContainerView: UIViewControllerRepresentable {
-        let usageViewController = UsageViewController()
+        let termsViewController = TermsViewController()
         
-        func makeUIViewController(context: UIViewControllerRepresentableContext<UsageViewControllerProvider.ContainerView>) -> UsageViewController {
-            return usageViewController
+        func makeUIViewController(context: UIViewControllerRepresentableContext<TermsViewControllerProvider.ContainerView>) -> TermsViewController {
+            return termsViewController
         }
 
-        func updateUIViewController(_ uiViewController: UsageViewControllerProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<UsageViewControllerProvider.ContainerView>) {
+        func updateUIViewController(_ uiViewController: TermsViewControllerProvider.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<TermsViewControllerProvider.ContainerView>) {
         }
     }
 }

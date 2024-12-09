@@ -15,7 +15,9 @@ class SettingsViewController: BaseViewController {
     var viewModel: ViewModel?
 
     private let subscribe = SubscribeButton()
-    private let usage = SettingsView(title: "Usage policy",
+    private let privacy = SettingsView(title: "Privacy policy",
+                                     image: "usage")
+    private let terms = SettingsView(title: "Terms & Conditions",
                                      image: "usage")
     private let rate = SettingsView(title: "Rate our app",
                                      image: "rate")
@@ -37,7 +39,8 @@ class SettingsViewController: BaseViewController {
         ]
 
         self.view.addSubview(subscribe)
-        self.view.addSubview(usage)
+        self.view.addSubview(privacy)
+        self.view.addSubview(terms)
         self.view.addSubview(rate)
         self.view.addSubview(share)
         setupConstraints()
@@ -70,8 +73,15 @@ class SettingsViewController: BaseViewController {
             view.height.equalTo(60)
         }
 
-        usage.snp.makeConstraints { view in
+        privacy.snp.makeConstraints { view in
             view.top.equalTo(share.snp.bottom).offset(12)
+            view.leading.equalToSuperview().offset(16)
+            view.trailing.equalToSuperview().inset(16)
+            view.height.equalTo(60)
+        }
+
+        terms.snp.makeConstraints { view in
+            view.top.equalTo(privacy.snp.bottom).offset(12)
             view.leading.equalToSuperview().offset(16)
             view.trailing.equalToSuperview().inset(16)
             view.height.equalTo(60)
@@ -87,7 +97,8 @@ extension SettingsViewController: IViewModelableController {
 //MARK: Button Actions
 extension SettingsViewController {
     private func makeButtonActions() {
-        self.usage.addTarget(self, action: #selector(usageTapped), for: .touchUpInside)
+        self.privacy.addTarget(self, action: #selector(privacyTapped), for: .touchUpInside)
+        self.terms.addTarget(self, action: #selector(termsTapped), for: .touchUpInside)
         self.rate.addTarget(self, action: #selector(rateTapped), for: .touchUpInside)
         self.share.addTarget(self, action: #selector(shareTapped), for: .touchUpInside)
         self.subscribe.addTarget(self, action: #selector(openSubscribtion), for: .touchUpInside)
@@ -141,9 +152,14 @@ extension SettingsViewController {
         }
     }
 
-    @objc func usageTapped() {
+    @objc func privacyTapped() {
         guard let navigationController = self.navigationController else { return }
         SettingsRouter.showUsageViewController(in: navigationController)
+    }
+
+    @objc func termsTapped() {
+        guard let navigationController = self.navigationController else { return }
+        SettingsRouter.showTermsViewController(in: navigationController)
     }
 }
 
