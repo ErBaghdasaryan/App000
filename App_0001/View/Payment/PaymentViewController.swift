@@ -19,7 +19,6 @@ final class PaymentViewController: BaseViewController {
     private let header = UILabel(text: "Choose your plan",
                                  textColor: .white,
                                  font: UIFont(name: "SFProText-Bold", size: 34))
-    private let pageControl = AdvancedPageControlView()
     private let forFreeButton = UIButton(type: .system)
     private let continueButton = UIButton(type: .system)
     private var currentIndex: Int = 0
@@ -27,6 +26,11 @@ final class PaymentViewController: BaseViewController {
     private let yearlyButton = PaymentButton(isYearly: .yearly)
     private let monthlyButton = PaymentButton(isYearly: .monthly)
     private var plansStack: UIStackView!
+
+    private let privacyButton = UIButton(type: .system)
+    private let restoreButton = UIButton(type: .system)
+    private let termsButton = UIButton(type: .system)
+    private var bottomStack: UIStackView!
 
     private var currentProduct: ApphudProduct?
     public let paywallID = "main"
@@ -41,7 +45,6 @@ final class PaymentViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        
     }
 
     override func setupUI() {
@@ -75,9 +78,7 @@ final class PaymentViewController: BaseViewController {
         header.textAlignment = .center
         header.numberOfLines = 1
 
-        self.forFreeButton.setTitle("Continue for free", for: .normal)
-        self.forFreeButton.setTitleColor(.white.withAlphaComponent(0.5), for: .normal)
-        self.forFreeButton.backgroundColor = .clear
+        self.forFreeButton.setImage(.init(named: "paymentClose"), for: .normal)
 
         self.continueButton.setTitle("Continue", for: .normal)
         self.continueButton.setTitleColor(.black, for: .normal)
@@ -85,30 +86,31 @@ final class PaymentViewController: BaseViewController {
         self.continueButton.layer.masksToBounds = true
         self.continueButton.layer.cornerRadius = 16
 
-        pageControl.drawer = ExtendedDotDrawer(numberOfPages: 4,
-                                               height: 6,
-                                               width: 63,
-                                               space: 6,
-                                               indicatorColor: UIColor.white,
-                                               dotsColor: UIColor.white.withAlphaComponent(0.4),
-                                               isBordered: true,
-                                               borderWidth: 0.0,
-                                               indicatorBorderColor: .orange,
-                                               indicatorBorderWidth: 0.0)
-        pageControl.setPage(4)
-
         self.plansStack = UIStackView(arrangedSubviews: [yearlyButton,
                                                          monthlyButton],
                                       axis: .vertical,
                                       spacing: 12)
+
+        self.privacyButton.setTitle("Privacy Policy", for: .normal)
+        self.privacyButton.setTitleColor(.white.withAlphaComponent(0.6), for: .normal)
+        self.privacyButton.titleLabel?.font = UIFont(name: "SFProText-Regular", size: 12)
+        self.restoreButton.setTitle("Restore Purchases", for: .normal)
+        self.restoreButton.setTitleColor(.white.withAlphaComponent(0.6), for: .normal)
+        self.restoreButton.titleLabel?.font = UIFont(name: "SFProText-Regular", size: 12)
+        self.termsButton.setTitle("Terms of Use", for: .normal)
+        self.termsButton.setTitleColor(.white.withAlphaComponent(0.6), for: .normal)
+        self.termsButton.titleLabel?.font = UIFont(name: "SFProText-Regular", size: 12)
+        self.bottomStack = UIStackView(arrangedSubviews: [privacyButton, restoreButton, termsButton],
+                                       axis: .horizontal,
+                                       spacing: 12)
 
         self.view.addSubview(topImage)
         self.view.addSubview(bottomView)
         self.view.addSubview(header)
         self.view.addSubview(continueButton)
         self.view.addSubview(forFreeButton)
-        self.view.addSubview(pageControl)
         self.view.addSubview(plansStack)
+        self.view.addSubview(bottomStack)
         setupConstraints()
     }
 
@@ -125,7 +127,7 @@ final class PaymentViewController: BaseViewController {
         }
 
         topImage.snp.makeConstraints { view in
-            view.top.equalToSuperview().offset(138)
+            view.top.equalToSuperview().offset(110)
             view.leading.equalToSuperview().offset(16)
             view.trailing.equalToSuperview().inset(16)
             view.height.equalTo(274)
@@ -146,17 +148,10 @@ final class PaymentViewController: BaseViewController {
         }
 
         forFreeButton.snp.makeConstraints { view in
-            view.top.equalTo(continueButton.snp.bottom).offset(10)
-            view.leading.equalToSuperview().offset(16)
+            view.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(11)
             view.trailing.equalToSuperview().inset(16)
-            view.height.equalTo(33)
-        }
-
-        pageControl.snp.makeConstraints { view in
-            view.top.equalToSuperview().offset(78)
-            view.leading.equalToSuperview().offset(60)
-            view.trailing.equalToSuperview().inset(60)
-            view.height.equalTo(6)
+            view.height.equalTo(22)
+            view.width.equalTo(23)
         }
 
         plansStack.snp.makeConstraints { view in
@@ -164,6 +159,13 @@ final class PaymentViewController: BaseViewController {
             view.leading.equalToSuperview().offset(16)
             view.trailing.equalToSuperview().inset(16)
             view.height.equalTo(118)
+        }
+
+        bottomStack.snp.makeConstraints { view in
+            view.top.equalTo(continueButton.snp.bottom).offset(26)
+            view.leading.equalToSuperview().offset(16)
+            view.trailing.equalToSuperview().inset(16)
+            view.height.equalTo(13)
         }
     }
 
@@ -177,6 +179,38 @@ extension PaymentViewController {
         forFreeButton.addTarget(self, action: #selector(forFreeButtonTapped), for: .touchUpInside)
         yearlyButton.addTarget(self, action: #selector(planAction(_:)), for: .touchUpInside)
         monthlyButton.addTarget(self, action: #selector(planAction(_:)), for: .touchUpInside)
+        privacyButton.addTarget(self, action: #selector(privacyTapped), for: .touchUpInside)
+        termsButton.addTarget(self, action: #selector(termsTapped), for: .touchUpInside)
+        restoreButton.addTarget(self, action: #selector(restore), for: .touchUpInside)
+    }
+
+    @objc func privacyTapped() {
+        guard let navigationController = self.navigationController else { return }
+        PaymentRouter.showUsageViewController(in: navigationController)
+    }
+
+    @objc func termsTapped() {
+        guard let navigationController = self.navigationController else { return }
+        PaymentRouter.showTermsViewController(in: navigationController)
+    }
+
+    @objc func restore() {
+        guard let navigationController = self.navigationController else { return }
+        self.restorePurchase { result in
+            print("Restore completed!")
+        }
+
+        let viewControllers = navigationController.viewControllers
+
+        if let currentIndex = viewControllers.firstIndex(of: self), currentIndex > 0 {
+            let previousViewController = viewControllers[currentIndex - 1]
+
+            if previousViewController is OnboardingViewController {
+                UntilOnboardingRouter.showTabBarViewController(in: navigationController)
+            } else {
+                UntilOnboardingRouter.popViewController(in: navigationController)
+            }
+        }
     }
 
     private func returnName(product: ApphudProduct) -> String {
@@ -248,10 +282,12 @@ extension PaymentViewController {
 
     }
 
-    @MainActor func startPurchase(product: ApphudProduct, escaping: @escaping(Bool) -> Void) {
+    @MainActor 
+    func startPurchase(product: ApphudProduct, escaping: @escaping(Bool) -> Void) {
         let selectedProduct = product
         Apphud.purchase(selectedProduct) { result in
             if let error = result.error {
+                print(error.localizedDescription)
                 escaping(false)
             }
 
@@ -263,6 +299,22 @@ extension PaymentViewController {
                 if Apphud.hasActiveSubscription() {
                     escaping(true)
                 }
+            }
+        }
+    }
+
+    @MainActor
+    func restorePurchase(escaping: @escaping(Bool) -> Void) {
+        Apphud.restorePurchases { subscriptions, _, error in
+            if let error = error {
+                print(error.localizedDescription)
+                escaping(false)
+            }
+            if subscriptions?.first?.isActive() ?? false {
+                escaping(true)
+            }
+            if Apphud.hasActiveSubscription() {
+                escaping(true)
             }
         }
     }
