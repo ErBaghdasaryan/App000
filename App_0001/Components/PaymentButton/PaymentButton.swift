@@ -59,7 +59,7 @@ final class PaymentButton: UIButton {
             self.title.text = "Yearly $49.99"
             self.addSubview(saveLabel)
         case .monthly:
-            self.title.text = "Monthly $6.99"
+            self.title.text = "Weekly $6.99"
             break
         }
 
