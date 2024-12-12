@@ -227,23 +227,30 @@ extension HomeViewController: UISearchBarDelegate {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if Apphud.hasActiveSubscription() {
+        let searchKey = "searchCount"
+        let maxFreeSearches = 10
+        let currentSearchCount = UserDefaults.standard.integer(forKey: searchKey)
+
+        if currentSearchCount < maxFreeSearches || Apphud.hasActiveSubscription()  {
+
+            UserDefaults.standard.set(currentSearchCount + 1, forKey: searchKey)
+
             guard let input = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines), !input.isEmpty else {
                 print("Input is empty")
                 return
             }
-            
+
             self.view.endEditing(true)
-            
+
             self.activityIndicator.startAnimating()
-            
+
             let url: String
             if input.contains("https://") {
                 url = input
             } else {
                 url = "https://www.instagram.com/\(input)"
             }
-            
+
             let params = ["url": url,
                           "token": "0118a92e-50df-48k72-8442-63043f133a61"]
             self.viewModel?.doCall(from: "https://proinstsave.site/api/profile",
@@ -253,10 +260,10 @@ extension HomeViewController: UISearchBarDelegate {
                                    completion: { (result: Result<ResponseModel, Error>) in
                 switch result {
                 case .success(let success):
-                    
+
                     let imageURL = success.data.profile.avatar
                     let user = success.data.profile
-                    
+
                     self.fetchImageUsingSDWebImage(from: imageURL) { image in
                         if let image = image {
                             
